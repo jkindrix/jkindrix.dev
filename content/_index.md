@@ -3,8 +3,6 @@ title: "Justin Kindrix's Site"
 description: "A collection of resources on various topics by Justin Kindrix, including books, tutorials, and more."
 ---
 
-# Welcome to Justin Kindrix's Site
-
 A collection of resources on various topics by Justin Kindrix, including books, tutorials, and more.
 
 ## Books
