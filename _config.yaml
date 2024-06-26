@@ -4,7 +4,7 @@ description: "A collection of resources on various topics by Justin Kindrix, inc
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jkindrix.dev" # the base hostname & protocol for your site
 
-remote_theme: jekyll-theme-primer
+remote_theme: gethyas/doks
 
 plugins:
   - jekyll-feed
