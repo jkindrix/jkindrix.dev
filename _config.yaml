@@ -4,22 +4,15 @@ description: "A collection of resources on various topics by Justin Kindrix, inc
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jkindrix.dev" # the base hostname & protocol for your site
 
-# Set the theme for the main site
-remote_theme: gethyas/doks
+remote_theme: jekyll-theme-primer
 
-# Enable GitHub Pages
 plugins:
-  - jekyll-remote-theme
-  - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-paginate
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-
-# Navigation
 nav:
   - title: "Home"
     url: /
@@ -32,7 +25,6 @@ nav:
   - title: "Blog"
     url: /blog/
 
-# Defaults
 defaults:
   - scope:
       path: ""
