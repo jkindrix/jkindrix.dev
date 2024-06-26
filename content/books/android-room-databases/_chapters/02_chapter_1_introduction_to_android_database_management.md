@@ -1,5 +1,5 @@
 ---
-title: "Chapter 1 Introduction To Android Database Management"
+title: "02. Chapter 1 Introduction To Android Database Management"
 ---
 
 ## Chapter 1: Introduction to Android Database Management
