@@ -5,7 +5,7 @@ baseurl: "/books/android-room-databases"
 url: "https://jkindrix.dev/books/android-room-databases" # the base hostname & protocol for your site
 
 # Set the theme
-remote_theme: getdoks/doks
+remote_theme: gethyas/doks
 
 # Enable GitHub Pages
 plugins:
