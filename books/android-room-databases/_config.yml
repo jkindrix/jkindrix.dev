@@ -4,22 +4,20 @@ description: "A comprehensive guide to Android Development using Kotlin, Jetpack
 baseurl: "/books/android-room-databases"
 url: "https://jkindrix.dev/books/android-room-databases" # the base hostname & protocol for your site
 
-# Set the theme
-remote_theme: getdoks/doks
+remote_theme: jekyll-theme-primer
 
-# Enable GitHub Pages
 plugins:
-  - jekyll-remote-theme
-  - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-paginate
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
+collections:
+  chapters:
+    output: true
+    permalink: /books/android-room-databases/:collection/:name
 
-# Navigation
 nav:
   - title: "Home"
     url: /books/android-room-databases/
@@ -32,13 +30,6 @@ nav:
   - title: "Appendix"
     url: /books/android-room-databases/chapters/appendix/
 
-# Collections
-collections:
-  chapters:
-    output: true
-    permalink: /books/android-room-databases/:collection/:name
-
-# Defaults
 defaults:
   - scope:
       path: ""
@@ -46,19 +37,3 @@ defaults:
     values:
       layout: "default"
       author: "Justin Kindrix"
-
-# Doks theme configuration
-doks:
-  search_enabled: true
-  site_logo: "/assets/images/logo.png" # Update with your logo path
-  site_favicon: "/assets/images/favicon.ico" # Update with your favicon path
-  site_description: "A comprehensive guide to Android Development using Kotlin, Jetpack Compose, Hilt, and Room."
-  author:
-    name: "Justin Kindrix"
-    avatar: "/assets/images/avatar.png" # Update with your avatar path
-    bio: "Web and Mobile Developer."
-    links:
-      - label: "GitHub"
-        url: "https://github.com/jkindrix"
-      - label: "X/Twitter"
-        url: "https://twitter.com/jkindrix"
