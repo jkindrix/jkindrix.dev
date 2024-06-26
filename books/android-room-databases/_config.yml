@@ -4,7 +4,7 @@ description: "A comprehensive guide to Android Development using Kotlin, Jetpack
 baseurl: "/books/android-room-databases"
 url: "https://jkindrix.dev/books/android-room-databases" # the base hostname & protocol for your site
 
-remote_theme: jekyll-theme-primer
+remote_theme: gethyas/doks
 
 plugins:
   - jekyll-feed
