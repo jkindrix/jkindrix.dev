@@ -5,7 +5,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://jkindrix.dev" # the base hostname & protocol for your site
 
 # Set the theme for the main site
-remote_theme: getdoks/doks
+remote_theme: gethyas/doks
 
 # Enable GitHub Pages
 plugins:
