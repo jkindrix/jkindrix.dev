@@ -1,86 +1,45 @@
+---
+layout: default
+title: "Home"
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justin Kindrix - Web & Mobile Developer</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1c1c1e;
-            color: #d1d1d6;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            padding: 60px 0;
-            background-color: #2c2c2e;
-            color: #f5f5f7;
-        }
-        .header h1 {
-            font-size: 3.5em;
-            margin: 0;
-        }
-        .header p {
-            font-size: 1.3em;
-            margin: 10px 0 0;
-        }
-        .content {
-            text-align: center;
-            margin-top: 40px;
-        }
-        .content h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .content p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            line-height: 1.6;
-            color: #a9a9b3;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            color: #1c1c1e;
-            background-color: #0a84ff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #0a73e0;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #2c2c2e;
-            color: #f5f5f7;
-            margin-top: 40px;
-        }
-    </style>
+    <title>{{ page.title }}</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Justin Kindrix</h1>
-            <p>Web & Mobile Developer</p>
-        </div>
-        <div class="content">
-            <h2>Welcome to My Personal Website</h2>
-            <p>Hello! I'm Justin Kindrix, a passionate web and mobile developer with a knack for creating efficient and scalable applications. With years of experience in the industry, I specialize in developing modern and intuitive user experiences.</p>
-            <a href="link-to-your-book" class="btn">Check Out My Book: Android Development - Room Databases</a>
-        </div>
-    </div>
-    <div class="footer">
-        <p>&copy; 2024 Justin Kindrix. All rights reserved.</p>
-    </div>
+    <header>
+        <h1>Welcome to Justin Kindrix's Site</h1>
+        <p>A collection of resources on various topics by Justin Kindrix, including books, tutorials, and more.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Books</h2>
+            <ul>
+                <li><a href="/books/android-room-databases/">Android Development - Room Databases</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Tutorials</h2>
+            <ul>
+                <li><a href="/tutorials/">Tutorials coming soon</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="/projects/">Projects coming soon</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Blog</h2>
+            <ul>
+                <li><a href="/blog/">Blog coming soon</a></li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
