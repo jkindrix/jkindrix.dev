@@ -1,0 +1,64 @@
+title: "Android Development - Room Databases"
+author: "Justin Kindrix"
+description: "A comprehensive guide to Android Development using Kotlin, Jetpack Compose, Hilt, and Room."
+baseurl: "/books/android-room-databases"
+url: "https://jkindrix.dev/books/android-room-databases" # the base hostname & protocol for your site
+
+# Set the theme
+remote_theme: getdoks/doks
+
+# Enable GitHub Pages
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Navigation
+nav:
+  - title: "Home"
+    url: /books/android-room-databases/
+  - title: "Introduction"
+    url: /books/android-room-databases/chapters/introduction/
+  - title: "Getting Started"
+    url: /books/android-room-databases/chapters/getting-started/
+  - title: "Advanced Topics"
+    url: /books/android-room-databases/chapters/advanced-topics/
+  - title: "Appendix"
+    url: /books/android-room-databases/chapters/appendix/
+
+# Collections
+collections:
+  chapters:
+    output: true
+    permalink: /books/android-room-databases/:collection/:name
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: chapters
+    values:
+      layout: "default"
+      author: "Justin Kindrix"
+
+# Doks theme configuration
+doks:
+  search_enabled: true
+  site_logo: "/assets/images/logo.png" # Update with your logo path
+  site_favicon: "/assets/images/favicon.ico" # Update with your favicon path
+  site_description: "A comprehensive guide to Android Development using Kotlin, Jetpack Compose, Hilt, and Room."
+  author:
+    name: "Justin Kindrix"
+    avatar: "/assets/images/avatar.png" # Update with your avatar path
+    bio: "Web and Mobile Developer."
+    links:
+      - label: "GitHub"
+        url: "https://github.com/jkindrix"
+      - label: "X/Twitter"
+        url: "https://twitter.com/jkindrix"
