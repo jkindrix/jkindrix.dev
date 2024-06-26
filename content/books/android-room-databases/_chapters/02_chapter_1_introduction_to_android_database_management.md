@@ -1,3 +1,7 @@
+---
+title: "Introduction to Android Database Management"
+---
+
 ## Chapter 1: Introduction to Android Database Management
 
 This chapter would lay the foundation for understanding the various components and technologies used in database management within an Android application, specifically focusing on Kotlin, Jetpack Compose, ViewModels, and Hilt. It would cover the importance of effective database management, an overview of each technology, and how they interact to create efficient and maintainable applications.
