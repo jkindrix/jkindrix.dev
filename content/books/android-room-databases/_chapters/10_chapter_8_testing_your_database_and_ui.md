@@ -1,3 +1,7 @@
+---
+title: "Chapter 8 Testing Your Database And Ui"
+---
+
 ## Chapter 8: Testing Your Database and UI
 
 This chapter would focus on ensuring the reliability and correctness of the database and UI through comprehensive testing. Key topics would include:
@@ -1643,4 +1647,3 @@ To reinforce your understanding of the testing methodologies covered in this cha
    - Implement a robust test suite covering unit, integration, and UI tests to ensure reliable and scalable functionality.
 
 By completing these exercises and projects, you will gain practical experience and deepen your understanding of effective testing strategies, preparing you for more advanced topics in Android development.
-

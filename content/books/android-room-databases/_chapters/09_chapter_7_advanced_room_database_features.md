@@ -1,3 +1,7 @@
+---
+title: "Chapter 7 Advanced Room Database Features"
+---
+
 ## Chapter 7: Advanced Room Database Features
 
 This chapter would delve into more advanced features and capabilities of the Room persistence library, including:
@@ -1409,4 +1413,3 @@ To reinforce your understanding of the advanced Room features covered in this ch
    - Ensure secure data handling and real-time updates using reactive streams.
 
 By completing these exercises, you will gain hands-on experience with advanced Room features, further solidifying your skills in building robust, maintainable, and efficient Android applications.
-

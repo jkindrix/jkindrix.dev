@@ -1,3 +1,7 @@
+---
+title: "Chapter 15 Deployment And Distribution"
+---
+
 ## Chapter 15: Deployment and Distribution
 
 This chapter would cover the final steps in getting your application ready for users, including deployment and distribution through various channels. Key topics would include:
@@ -10,4 +14,3 @@ This chapter would cover the final steps in getting your application ready for u
 - Collecting and analyzing user feedback for continuous improvement
 
 The chapter would provide a comprehensive guide to ensure a smooth deployment process and successful distribution of the application.
-

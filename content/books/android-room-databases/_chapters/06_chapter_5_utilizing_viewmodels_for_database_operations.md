@@ -1,3 +1,7 @@
+---
+title: "Chapter 5 Utilizing Viewmodels For Database Operations"
+---
+
 ## Chapter 5: Utilizing ViewModels for Database Operations
 
 This chapter would explain the role of ViewModels in managing UI-related data in a lifecycle-conscious way. Key topics would include:
@@ -803,4 +807,3 @@ By following these best practices and examples, you can ensure that your UI rema
 - **6.2 Example: Note-Taking Application**
   - Building a simple note-taking app with ViewModel and Room
   - Managing notes and reflecting changes in the UI
-

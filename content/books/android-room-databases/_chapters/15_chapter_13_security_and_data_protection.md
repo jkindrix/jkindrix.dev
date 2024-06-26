@@ -1,3 +1,7 @@
+---
+title: "Chapter 13 Security And Data Protection"
+---
+
 ## Chapter 13: Security and Data Protection
 
 This chapter would cover best practices and techniques for securing data and protecting user privacy in Android applications. Key topics would include:
@@ -114,4 +118,3 @@ The chapter would provide practical examples and guidelines to help developers b
 - **7.2 Preparing for Further Learning**
   - Suggested resources for further exploration
   - Encouraging readers to implement security measures in their own projects
-

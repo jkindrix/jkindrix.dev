@@ -1,3 +1,7 @@
+---
+title: "Chapter 5 Utilizing Viewmodels For Database Operations"
+---
+
 ## Chapter 5: Utilizing ViewModels for Database Operations
 
 ### Section 6: Practical Examples
@@ -584,4 +588,3 @@ To reinforce your understanding and prepare for the next chapter, consider the f
    - Measure the impact of these optimizations on app performance.
 
 By completing these exercises, you will gain hands-on experience with advanced features and best practices, further solidifying your skills in building robust Android applications with ViewModels and Room.
-

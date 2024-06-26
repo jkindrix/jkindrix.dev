@@ -1,3 +1,7 @@
+---
+title: "Chapter 6 Dependency Injection With Hilt"
+---
+
 ## Chapter 6: Dependency Injection with Hilt
 
 This chapter would cover the use of Hilt, a dependency injection library, to manage dependencies in an Android application efficiently. Topics would include:
@@ -1738,4 +1742,3 @@ To reinforce your understanding of Hilt and dependency injection, consider the f
    - Measure the impact of these optimizations on app performance.
 
 By completing these exercises, you will gain hands-on experience with Hilt and solidify your skills in building robust, maintainable Android applications with effective dependency management.
-

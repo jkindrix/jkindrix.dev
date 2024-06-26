@@ -1,3 +1,7 @@
+---
+title: "Chapter 12 Handling Offline Capabilities And Data Sync"
+---
+
 ## Chapter 12: Handling Offline Capabilities and Data Sync
 
 This chapter would focus on strategies for managing offline capabilities and synchronizing data between the local database and a remote server. Key topics would include:
@@ -107,4 +111,3 @@ Practical examples and patterns would be discussed to help readers build robust 
 - **7.2 Preparing for Further Learning**
   - Suggested resources for further exploration
   - Encouraging readers to implement offline and sync capabilities in their own projects
-

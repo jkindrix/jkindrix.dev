@@ -1,3 +1,7 @@
+---
+title: "Chapter 11 Advanced Jetpack Compose Techniques"
+---
+
 ## Chapter 11: Advanced Jetpack Compose Techniques
 
 This chapter would explore advanced techniques and features of Jetpack Compose to create more dynamic and complex UIs. Topics would include:
@@ -100,4 +104,3 @@ Examples and practical applications would be provided to help readers create sop
 - **7.2 Preparing for Further Learning**
   - Suggested resources for further exploration
   - Encouraging readers to experiment with advanced Compose features in their projects
-

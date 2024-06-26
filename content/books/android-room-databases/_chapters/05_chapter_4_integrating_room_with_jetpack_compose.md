@@ -1,3 +1,7 @@
+---
+title: "Chapter 4 Integrating Room With Jetpack Compose"
+---
+
 ## Chapter 4: Integrating Room with Jetpack Compose
 
 This chapter would focus on how to effectively use the Room persistence library within a Jetpack Compose UI framework. It would cover topics such as:
@@ -1787,4 +1791,3 @@ To reinforce your understanding and prepare for the next chapter, consider the f
    - Measure the impact of these optimizations on app performance.
 
 By completing these exercises, you will gain hands-on experience with advanced features and best practices, further solidifying your skills in building robust Android applications with Room and Jetpack Compose.
-

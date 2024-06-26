@@ -1,3 +1,7 @@
+---
+title: "Chapter 18 Community And Resources"
+---
+
 ## Chapter 18: Community and Resources
 
 This chapter would guide readers on how to stay connected with the Android development community and leverage available resources for continuous learning. Key topics would include:

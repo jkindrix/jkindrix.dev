@@ -1,3 +1,7 @@
+---
+title: "Chapter 3 Understanding Room Persistence Library"
+---
+
 ## Chapter 3: Understanding Room Persistence Library
 
 This chapter would delve into the Room persistence library, explaining its importance and how it simplifies database management in Android applications. Topics would include an overview of Room, its architecture, setting up Room in a project, defining entities, DAOs (Data Access Objects), and the database class. The chapter would also cover basic CRUD (Create, Read, Update, Delete) operations and how Room integrates with Kotlin and Jetpack Compose.
@@ -1204,4 +1208,3 @@ To reinforce your understanding of Room and prepare for the next chapter, consid
    - Write migration scripts to handle schema changes and test them thoroughly.
 
 By completing these exercises, you will gain hands-on experience with Room and be better prepared to tackle advanced topics in the next chapter.
-

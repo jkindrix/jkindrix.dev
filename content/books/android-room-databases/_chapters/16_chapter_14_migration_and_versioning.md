@@ -1,3 +1,7 @@
+---
+title: "Chapter 14 Migration And Versioning"
+---
+
 ## Chapter 14: Migration and Versioning
 
 This chapter would focus on managing database schema changes and application versioning to ensure a smooth user experience across updates. Key topics would include:
@@ -99,4 +103,3 @@ Practical examples and step-by-step guides would help readers effectively manage
 - **7.2 Preparing for Further Learning**
   - Suggested resources for further exploration
   - Encouraging readers to implement migration and versioning strategies in their own projects
-

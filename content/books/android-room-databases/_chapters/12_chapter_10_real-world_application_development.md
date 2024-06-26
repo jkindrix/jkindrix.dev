@@ -1,3 +1,7 @@
+---
+title: "Chapter 10 Real-world Application Development"
+---
+
 ## Chapter 10: Real-World Application Development
 
 This chapter would guide the reader through building a comprehensive real-world application, incorporating all the concepts and techniques covered in previous chapters. Key topics would include:
@@ -1893,4 +1897,3 @@ Now that you have a solid understanding of building Android applications, we enc
    - Prepare your app for deployment, submit it to the Google Play Store, monitor performance and user feedback, and release updates.
 
 By building your own applications, you will deepen your understanding of Android development and gain valuable hands-on experience. Keep experimenting, learning, and pushing the boundaries of what you can create. Good luck on your journey as an Android developer!
-

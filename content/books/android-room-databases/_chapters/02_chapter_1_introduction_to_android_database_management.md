@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Android Database Management"
+title: "Chapter 1 Introduction To Android Database Management"
 ---
 
 ## Chapter 1: Introduction to Android Database Management
@@ -667,4 +667,3 @@ To reinforce your understanding of the concepts discussed in this chapter, try t
    - Test the scalability and performance of your database with a large dataset.
 
 By completing these exercises, you will gain hands-on experience with the technologies and best practices discussed in this chapter, preparing you for the more advanced topics covered in the next chapter.
-

@@ -1,3 +1,7 @@
+---
+title: "Chapter 2 Setting Up The Development Environment"
+---
+
 ## Chapter 2: Setting Up the Development Environment
 
 This chapter would guide the reader through the process of setting up the necessary tools and environment for Android development. It would include steps to install Android Studio, configure Kotlin, set up Jetpack Compose, integrate ViewModels, and implement Hilt for dependency injection. Additionally, it would cover how to create a new project and configure it for database management.
@@ -1342,4 +1346,3 @@ To reinforce your understanding of the setup process and prepare for the upcomin
    - Perform CRUD operations to test the relationships and ensure data integrity.
 
 By completing these exercises, you will gain hands-on experience with the technologies and best practices discussed in this chapter, solidifying your knowledge and preparing you for more advanced topics in the next chapter.
-
