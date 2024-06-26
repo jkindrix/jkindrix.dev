@@ -1,4 +1,5 @@
 ---
+order: 8
 title: "Chapter 5 Utilizing Viewmodels For Database Operations"
 ---
 

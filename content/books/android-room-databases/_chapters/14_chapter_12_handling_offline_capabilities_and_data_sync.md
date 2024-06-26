@@ -1,4 +1,5 @@
 ---
+order: 15
 title: "Chapter 12 Handling Offline Capabilities And Data Sync"
 ---
 

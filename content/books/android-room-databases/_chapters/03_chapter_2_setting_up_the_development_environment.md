@@ -1,4 +1,5 @@
 ---
+order: 4
 title: "Chapter 2 Setting Up The Development Environment"
 ---
 

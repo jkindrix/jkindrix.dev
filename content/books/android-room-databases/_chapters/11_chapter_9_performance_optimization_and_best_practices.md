@@ -1,4 +1,5 @@
 ---
+order: 12
 title: "Chapter 9 Performance Optimization And Best Practices"
 ---
 

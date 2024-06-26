@@ -1,4 +1,5 @@
 ---
+order: 6
 title: "Chapter 4 Integrating Room With Jetpack Compose"
 ---
 

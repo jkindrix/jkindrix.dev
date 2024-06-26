@@ -1,4 +1,5 @@
 ---
+order: 9
 title: "Chapter 6 Dependency Injection With Hilt"
 ---
 
