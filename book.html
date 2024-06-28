@@ -24,9 +24,9 @@
             display: none;
         }
         #content {
-            padding-left: 20px;
+            padding: 20px;
             margin-left: 210px;
-            width: 100%;
+            width: calc(100% - 210px);
         }
         .navigation {
             text-align: center;
@@ -101,6 +101,7 @@
         }
 
         function showChapter(index) {
+            if (index < 0 || index >= window.chapterContents.length) return;
             document.getElementById('chapter-content').innerHTML = window.chapterContents[index];
             updateNavigation(index);
         }
