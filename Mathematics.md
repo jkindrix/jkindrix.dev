@@ -3,9 +3,6 @@ date-created: Thursday, June 27th 2024, 7:14:30 pm
 date-modified: Thursday, June 27th 2024, 7:21:55 pm
 ---
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
-</script>
 <script>
   MathJax = {
     tex: {
@@ -13,6 +10,10 @@ date-modified: Thursday, June 27th 2024, 7:21:55 pm
     }
   };
 </script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js">
+</script>
+
 
 # Mathematics
 
