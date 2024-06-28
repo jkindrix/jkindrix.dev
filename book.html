@@ -34,7 +34,7 @@
         }
 
         function generateTOCAndSections(markdown) {
-            const html = marked(markdown);
+            const html = marked.parse(markdown);
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const sections = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
