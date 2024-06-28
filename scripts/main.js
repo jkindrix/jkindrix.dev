@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('books.json')
-        .then(response => response.json())
+    fetch('/books.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok ${response.statusText}`);
+            }
+            return response.json();
+        })
         .then(books => {
             const bookList = document.getElementById('book-list');
             books.forEach(book => {
