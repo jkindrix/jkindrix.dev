@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Markdown Loader</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            display: flex;
+        }
+        nav {
+            width: 200px;
+            border-right: 1px solid #ccc;
+            padding-right: 10px;
+        }
+        #content {
+            padding-left: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav id="toc"></nav>
+    <div id="content"></div>
+
+    <script>
+        function getQueryParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        async function fetchMarkdown(file) {
+            const response = await fetch(file);
+            return await response.text();
+        }
+
+        function generateTOC(html) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const sections = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            let toc = '';
+            sections.forEach((el, index) => {
+                toc += `<div style="margin-left: ${20 * (el.tagName[1] - 1)}px;">
+                            <a href="javascript:void(0)" onclick="showSection(${index})">${el.textContent}</a>
+                        </div>`;
+            });
+            document.getElementById('toc').innerHTML = toc;
+        }
+
+        function showSection(index) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(window.markdownHTML, 'text/html');
+            const sections = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            let content = '';
+            let start = false;
+
+            sections.forEach((el, i) => {
+                if (i === index) {
+                    start = true;
+                } else if (start && el.tagName <= sections[index].tagName) {
+                    start = false;
+                }
+
+                if (start) {
+                    content += el.outerHTML;
+                    let sibling = el.nextElementSibling;
+                    while (sibling && sibling.tagName > sections[index].tagName) {
+                        content += sibling.outerHTML;
+                        sibling = sibling.nextElementSibling;
+                    }
+                }
+            });
+
+            document.getElementById('content').innerHTML = content;
+        }
+
+        async function initialize() {
+            const file = getQueryParameter('file');
+            if (!file) {
+                document.getElementById('content').innerHTML = '<p>Error: No book file specified.</p>';
+                return;
+            }
+
+            const markdown = await fetchMarkdown(file);
+            const html = marked.parse(markdown);
+            window.markdownHTML = html;
+            generateTOC(html);
+            showSection(0);
+        }
+
+        initialize();
+    </script>
+</body>
+</html>
