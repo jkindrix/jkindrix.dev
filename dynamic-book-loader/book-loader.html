@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Markdown Loader</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <button class="toggle-sidebar" id="toggle-sidebar">Show Sidebar</button>
+    <nav id="sidebar" aria-label="Table of Contents"></nav>
+    <div id="content">
+        <div class="navigation" id="top-navigation" aria-label="Chapter Navigation"></div>
+        <div id="chapter-content">Loading...</div>
+        <div class="navigation" id="bottom-navigation" aria-label="Chapter Navigation"></div>
+    </div>
+</body>
+</html>
