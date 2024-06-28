@@ -74,6 +74,7 @@ function showChapter(index) {
     document.getElementById('chapter-content').innerHTML = chapterContents[index];
     updateNavigation(index);
     logMessage(`showChapter: Displayed chapter ${index}`);
+    hljs.highlightAll(); // Reapply syntax highlighting
 }
 
 function updateNavigation(index) {
@@ -90,7 +91,9 @@ function updateNavigation(index) {
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggleButton = document.getElementById('toggle-sidebar');
+    const content = document.getElementById('content');
     sidebar.classList.toggle('visible');
+    content.classList.toggle('sidebar-visible');
     toggleButton.textContent = sidebar.classList.contains('visible') ? 'Hide Sidebar' : 'Show Sidebar';
     logMessage(`toggleSidebar: Sidebar toggled to ${sidebar.classList.contains('visible') ? 'visible' : 'hidden'}`);
 }
