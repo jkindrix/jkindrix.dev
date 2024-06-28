@@ -9,16 +9,23 @@
         body {
             display: flex;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         #sidebar {
             width: 200px;
             border-right: 1px solid #ccc;
             padding-right: 10px;
             overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+            background-color: #f4f4f4;
+            z-index: 1000;
             display: none;
         }
         #content {
-            padding-left: 10px;
+            padding-left: 20px;
+            margin-left: 210px;
             width: 100%;
         }
         .navigation {
@@ -34,7 +41,7 @@
             text-decoration: underline;
         }
         .toggle-sidebar {
-            position: absolute;
+            position: fixed;
             top: 10px;
             left: 10px;
             cursor: pointer;
@@ -44,6 +51,7 @@
             padding: 5px 10px;
             border: none;
             border-radius: 5px;
+            z-index: 1001;
         }
     </style>
 </head>
