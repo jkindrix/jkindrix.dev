@@ -8,6 +8,8 @@ async function fetchMarkdown(file) {
     return await response.text();
 }
 
+let chapterContents = [];
+
 function generateTOCAndChapters(markdown) {
     const html = marked.parse(markdown);
     const parser = new DOMParser();
@@ -20,7 +22,7 @@ function generateTOCAndChapters(markdown) {
         </div>
     `).join('');
 
-    const chapterContents = chapters.map((el) => {
+    chapterContents = chapters.map((el) => {
         let content = el.outerHTML;
         let sibling = el.nextElementSibling;
         while (sibling && !sibling.tagName.match(/^H1$/)) {
@@ -34,7 +36,7 @@ function generateTOCAndChapters(markdown) {
     document.querySelectorAll('#sidebar a').forEach(link => {
         link.addEventListener('click', () => showChapter(link.dataset.index));
     });
-    
+
     showChapter(0);  // Show the first chapter by default
 }
 
