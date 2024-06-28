@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #sidebar {
     width: 200px;
     border-right: 1px solid #ccc;
@@ -15,23 +16,32 @@ body {
     z-index: 1000;
     display: none;
 }
+
+#sidebar.visible {
+    display: block;
+}
+
 #content {
     padding: 20px;
     margin-left: 210px;
     width: calc(100% - 210px);
 }
+
 .navigation {
     text-align: center;
     margin: 20px 0;
 }
+
 .navigation a {
     margin: 0 10px;
     text-decoration: none;
     color: #007BFF;
 }
+
 .navigation a:hover {
     text-decoration: underline;
 }
+
 .toggle-sidebar {
     position: fixed;
     top: 10px;
@@ -44,4 +54,18 @@ body {
     border: none;
     border-radius: 5px;
     z-index: 1001;
+}
+
+#debug {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f8f8f8;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 12px;
 }
