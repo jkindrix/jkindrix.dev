@@ -1,16 +1,29 @@
 document.addEventListener('DOMContentLoaded', initialize);
 
+function logMessage(message) {
+    const debugElement = document.getElementById('debug');
+    const logEntry = document.createElement('div');
+    logEntry.textContent = message;
+    debugElement.appendChild(logEntry);
+}
+
 async function fetchMarkdown(file) {
+    logMessage(`Fetching file: ${file}`);
     const response = await fetch(file);
     if (!response.ok) {
-        throw new Error(`Failed to load ${file}`);
+        const errorMessage = `Failed to load ${file}`;
+        logMessage(errorMessage);
+        throw new Error(errorMessage);
     }
-    return await response.text();
+    const text = await response.text();
+    logMessage(`File fetched successfully`);
+    return text;
 }
 
 let chapterContents = [];
 
 function generateTOCAndChapters(markdown) {
+    logMessage(`Generating TOC and chapters`);
     const html = marked.parse(markdown);
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
@@ -38,12 +51,14 @@ function generateTOCAndChapters(markdown) {
     });
 
     showChapter(0);  // Show the first chapter by default
+    logMessage(`TOC and chapters generated`);
 }
 
 function showChapter(index) {
     if (index < 0 || index >= chapterContents.length) return;
     document.getElementById('chapter-content').innerHTML = chapterContents[index];
     updateNavigation(index);
+    logMessage(`Showing chapter ${index}`);
 }
 
 function updateNavigation(index) {
@@ -54,6 +69,7 @@ function updateNavigation(index) {
     `;
     document.getElementById('top-navigation').innerHTML = navContent;
     document.getElementById('bottom-navigation').innerHTML = navContent;
+    logMessage(`Navigation updated for chapter ${index}`);
 }
 
 function toggleSidebar() {
@@ -61,15 +77,19 @@ function toggleSidebar() {
     const toggleButton = document.getElementById('toggle-sidebar');
     sidebar.classList.toggle('visible');
     toggleButton.textContent = sidebar.classList.contains('visible') ? 'Hide Sidebar' : 'Show Sidebar';
+    logMessage(`Sidebar toggled to ${sidebar.classList.contains('visible') ? 'visible' : 'hidden'}`);
 }
 
 async function initialize() {
+    logMessage(`Initializing`);
     document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
 
     if (!file) {
-        document.getElementById('chapter-content').innerHTML = '<p>Error: No book file specified.</p>';
+        const errorMessage = 'Error: No book file specified.';
+        document.getElementById('chapter-content').innerHTML = `<p>${errorMessage}</p>`;
+        logMessage(errorMessage);
         return;
     }
 
@@ -78,5 +98,7 @@ async function initialize() {
         generateTOCAndChapters(markdown);
     } catch (error) {
         document.getElementById('chapter-content').innerHTML = `<p>${error.message}</p>`;
+        logMessage(error.message);
     }
+    logMessage(`Initialization complete`);
 }
