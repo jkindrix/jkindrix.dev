@@ -8,21 +8,53 @@
     <style>
         body {
             display: flex;
+            font-family: Arial, sans-serif;
         }
-        nav {
+        #sidebar {
             width: 200px;
             border-right: 1px solid #ccc;
             padding-right: 10px;
+            overflow-y: auto;
+            display: none;
         }
         #content {
             padding-left: 10px;
             width: 100%;
         }
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .navigation a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+        .toggle-sidebar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            background: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <nav id="toc"></nav>
-    <div id="content">Loading...</div>
+    <button class="toggle-sidebar" onclick="toggleSidebar()">Show Sidebar</button>
+    <nav id="sidebar"></nav>
+    <div id="content">
+        <div class="navigation" id="top-navigation"></div>
+        <div id="chapter-content">Loading...</div>
+        <div class="navigation" id="bottom-navigation"></div>
+    </div>
 
     <script>
         async function fetchMarkdown(file) {
@@ -33,35 +65,66 @@
             return await response.text();
         }
 
-        function generateTOCAndSections(markdown) {
+        function generateTOCAndChapters(markdown) {
             const html = marked.parse(markdown);
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            const sections = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+            const chapters = Array.from(doc.querySelectorAll('h1'));
 
-            const toc = sections.map((el, index) => {
-                return `<div style="margin-left: ${20 * (el.tagName[1] - 1)}px;">
-                            <a href="javascript:void(0)" onclick="showSection(${index})">${el.textContent}</a>
+            const toc = chapters.map((el, index) => {
+                return `<div>
+                            <a href="javascript:void(0)" onclick="showChapter(${index})">${el.textContent}</a>
                         </div>`;
             }).join('');
 
-            const contentSections = sections.map((el, index) => {
+            const chapterContents = chapters.map((el, index) => {
                 let content = el.outerHTML;
                 let sibling = el.nextElementSibling;
-                while (sibling && !sibling.tagName.match(/^H[1-6]$/)) {
+                while (sibling && !sibling.tagName.match(/^H[1]$/)) {
                     content += sibling.outerHTML;
                     sibling = sibling.nextElementSibling;
                 }
                 return content;
             });
 
-            document.getElementById('toc').innerHTML = toc;
-            window.contentSections = contentSections;
-            showSection(0);  // Show the first section by default
+            document.getElementById('sidebar').innerHTML = toc;
+            window.chapterContents = chapterContents;
+            showChapter(0);  // Show the first chapter by default
         }
 
-        function showSection(index) {
-            document.getElementById('content').innerHTML = window.contentSections[index];
+        function showChapter(index) {
+            document.getElementById('chapter-content').innerHTML = window.chapterContents[index];
+            updateNavigation(index);
+        }
+
+        function updateNavigation(index) {
+            const totalChapters = window.chapterContents.length;
+            const topNav = document.getElementById('top-navigation');
+            const bottomNav = document.getElementById('bottom-navigation');
+            let navContent = '';
+
+            if (index > 0) {
+                navContent += `<a href="javascript:void(0)" onclick="showChapter(${index - 1})">&laquo; Previous Chapter</a>`;
+            }
+
+            if (index < totalChapters - 1) {
+                navContent += `<a href="javascript:void(0)" onclick="showChapter(${index + 1})">Next Chapter &raquo;</a>`;
+            }
+
+            topNav.innerHTML = navContent;
+            bottomNav.innerHTML = navContent;
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleButton = document.querySelector('.toggle-sidebar');
+            if (sidebar.style.display === 'none') {
+                sidebar.style.display = 'block';
+                toggleButton.textContent = 'Hide Sidebar';
+            } else {
+                sidebar.style.display = 'none';
+                toggleButton.textContent = 'Show Sidebar';
+            }
         }
 
         async function initialize() {
@@ -69,15 +132,15 @@
             const file = urlParams.get('file');
 
             if (!file) {
-                document.getElementById('content').innerHTML = '<p>Error: No book file specified.</p>';
+                document.getElementById('chapter-content').innerHTML = '<p>Error: No book file specified.</p>';
                 return;
             }
 
             try {
                 const markdown = await fetchMarkdown(file);
-                generateTOCAndSections(markdown);
+                generateTOCAndChapters(markdown);
             } catch (error) {
-                document.getElementById('content').innerHTML = `<p>${error.message}</p>`;
+                document.getElementById('chapter-content').innerHTML = `<p>${error.message}</p>`;
             }
         }
 
