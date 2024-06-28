@@ -29,8 +29,8 @@ function generateTOCAndChapters(markdown) {
     const html = marked.parse(markdown);
     logMessage(`generateTOCAndChapters: Converted markdown to HTML. Length of HTML content: ${html.length}`);
     
-    // Log a snippet of the converted HTML
-    logMessage(`generateTOCAndChapters: HTML snippet: ${html.substring(0, 500)}`);
+    // Log a larger snippet of the converted HTML
+    logMessage(`generateTOCAndChapters: HTML snippet: ${html.substring(0, 1000)}`);
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
