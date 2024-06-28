@@ -28,9 +28,13 @@ function generateTOCAndChapters(markdown) {
     logMessage(`generateTOCAndChapters: Generating TOC and chapters from markdown`);
     const html = marked.parse(markdown);
     logMessage(`generateTOCAndChapters: Converted markdown to HTML. Length of HTML content: ${html.length}`);
+    
+    // Log a snippet of the converted HTML
+    logMessage(`generateTOCAndChapters: HTML snippet: ${html.substring(0, 500)}`);
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
-    const chapters = Array.from(doc.querySelectorAll('h1'));
+    const chapters = Array.from(doc.querySelectorAll('h2'));
     logMessage(`generateTOCAndChapters: Found ${chapters.length} chapters`);
 
     const toc = chapters.map((el, index) => `
@@ -43,7 +47,7 @@ function generateTOCAndChapters(markdown) {
     chapterContents = chapters.map((el) => {
         let content = el.outerHTML;
         let sibling = el.nextElementSibling;
-        while (sibling && !sibling.tagName.match(/^H1$/)) {
+        while (sibling && !sibling.tagName.match(/^H2$/)) {
             content += sibling.outerHTML;
             sibling = sibling.nextElementSibling;
         }
