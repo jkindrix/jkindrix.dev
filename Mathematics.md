@@ -5,7 +5,7 @@ date-modified: Thursday, June 27th 2024, 7:21:55 pm
 
 <script>
   MathJax = {
-    tex2jax: {
+    tex: {
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
         processEscapes: false,
