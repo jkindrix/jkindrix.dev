@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             books.forEach(book => {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                link.href = `dynamic-book-loader/book-loader.html?file=${book.file}`;
+                link.href = `modules/dynamic-book-loader/book-loader.html?file=${book.file}`;
                 link.textContent = book.title;
                 listItem.appendChild(link);
                 bookList.appendChild(listItem);
