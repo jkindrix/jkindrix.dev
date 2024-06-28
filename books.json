@@ -1,14 +1,14 @@
 [
     {
         "title": "Android Development - Room Databases",
-        "file": "books/Android Development - Room Databases.md"
+        "file": "/books/Android Development - Room Databases"
     },
     {
         "title": "Mathematics",
-        "file": "books/Mathematics.md"
+        "file": "/books/Mathematics"
     },
     {
         "title": "jQuery",
-        "file": "books/jQuery.md"
+        "file": "/books/jQuery"
     }
 ]
