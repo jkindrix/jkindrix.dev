@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('/books.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Network response was not ok ${response.statusText}`);
+                throw new Error(`Network response was not ok: ${response.statusText}`);
             }
             return response.json();
         })
@@ -20,6 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error loading books:', error);
             const bookList = document.getElementById('book-list');
-            bookList.innerHTML = '<li>Error loading book list. Please try again later.</li>';
+            bookList.innerHTML = `<li>${error.message}</li>`;
         });
 });
