@@ -23,6 +23,12 @@ body {
 
 #content {
     padding: 20px;
+    margin-left: 0;
+    width: 100%;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+#content.sidebar-visible {
     margin-left: 210px;
     width: calc(100% - 210px);
 }
@@ -68,4 +74,12 @@ body {
     overflow-y: auto;
     font-family: monospace;
     font-size: 12px;
+}
+
+pre code {
+    display: block;
+    padding: 1em;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    overflow-x: auto;
 }
