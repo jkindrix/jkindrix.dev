@@ -22,71 +22,63 @@
 </head>
 <body>
     <nav id="toc"></nav>
-    <div id="content"></div>
+    <div id="content">Loading...</div>
 
     <script>
-        function getQueryParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
         async function fetchMarkdown(file) {
             const response = await fetch(file);
+            if (!response.ok) {
+                throw new Error(`Failed to load ${file}`);
+            }
             return await response.text();
         }
 
-        function generateTOC(html) {
+        function generateTOCAndSections(markdown) {
+            const html = marked(markdown);
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            const sections = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            let toc = '';
-            sections.forEach((el, index) => {
-                toc += `<div style="margin-left: ${20 * (el.tagName[1] - 1)}px;">
+            const sections = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+
+            const toc = sections.map((el, index) => {
+                return `<div style="margin-left: ${20 * (el.tagName[1] - 1)}px;">
                             <a href="javascript:void(0)" onclick="showSection(${index})">${el.textContent}</a>
                         </div>`;
+            }).join('');
+
+            const contentSections = sections.map((el, index) => {
+                let content = el.outerHTML;
+                let sibling = el.nextElementSibling;
+                while (sibling && !sibling.tagName.match(/^H[1-6]$/)) {
+                    content += sibling.outerHTML;
+                    sibling = sibling.nextElementSibling;
+                }
+                return content;
             });
+
             document.getElementById('toc').innerHTML = toc;
+            window.contentSections = contentSections;
+            showSection(0);  // Show the first section by default
         }
 
         function showSection(index) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(window.markdownHTML, 'text/html');
-            const sections = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-            let content = '';
-            let start = false;
-
-            sections.forEach((el, i) => {
-                if (i === index) {
-                    start = true;
-                } else if (start && el.tagName <= sections[index].tagName) {
-                    start = false;
-                }
-
-                if (start) {
-                    content += el.outerHTML;
-                    let sibling = el.nextElementSibling;
-                    while (sibling && sibling.tagName > sections[index].tagName) {
-                        content += sibling.outerHTML;
-                        sibling = sibling.nextElementSibling;
-                    }
-                }
-            });
-
-            document.getElementById('content').innerHTML = content;
+            document.getElementById('content').innerHTML = window.contentSections[index];
         }
 
         async function initialize() {
-            const file = getQueryParameter('file');
+            const urlParams = new URLSearchParams(window.location.search);
+            const file = urlParams.get('file');
+
             if (!file) {
                 document.getElementById('content').innerHTML = '<p>Error: No book file specified.</p>';
                 return;
             }
 
-            const markdown = await fetchMarkdown(file);
-            const html = marked.parse(markdown);
-            window.markdownHTML = html;
-            generateTOC(html);
-            showSection(0);
+            try {
+                const markdown = await fetchMarkdown(file);
+                generateTOCAndSections(markdown);
+            } catch (error) {
+                document.getElementById('content').innerHTML = `<p>${error.message}</p>`;
+            }
         }
 
         initialize();
