@@ -1,8 +1,27 @@
 body {
     display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+}
+
+#header {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+}
+
+.toggle-sidebar {
+    cursor: pointer;
+    font-size: 18px;
+    background: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
 }
 
 #sidebar {
@@ -15,6 +34,7 @@ body {
     background-color: #f4f4f4;
     z-index: 1000;
     display: none;
+    top: 0; /* Ensure it aligns with the top of the page */
 }
 
 #sidebar.visible {
@@ -48,20 +68,6 @@ body {
     text-decoration: underline;
 }
 
-.toggle-sidebar {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    background: #007BFF;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    z-index: 1001;
-}
-
 #debug {
     position: fixed;
     bottom: 0;
@@ -85,6 +91,7 @@ pre code {
     white-space: pre;
 }
 
+/* Highlight.js styles (unchanged) */
 .hljs-comment,
 .hljs-quote {
     color: #d4d0ab;
