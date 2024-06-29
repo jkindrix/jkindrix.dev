@@ -1,12 +1,15 @@
 import { logMessage } from './log.js';
 import { showChapter } from './chapters.js';
 
+console.log("toc.js is loaded");
+
 /**
  * Generates the Table of Contents (TOC) from the markdown content.
  * @param {string} markdown - The markdown content.
  * @returns {Object} The TOC and list of chapters.
  */
 export function generateTOC(markdown) {
+    console.log("generateTOC: Generating TOC from markdown");
     logMessage(`generateTOC: Generating TOC from markdown`);
     const html = marked.parse(markdown);
     logMessage(`generateTOC: Converted markdown to HTML. Length of HTML content: ${html.length}`);
