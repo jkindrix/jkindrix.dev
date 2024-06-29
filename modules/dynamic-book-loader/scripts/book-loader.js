@@ -3,7 +3,7 @@ console.log("book-loader.js is executed");
 import { initialize } from './initialize.js';
 
 // Initialize the application when the DOM content is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded event fired - Initializing application");
     try {
         initialize();
