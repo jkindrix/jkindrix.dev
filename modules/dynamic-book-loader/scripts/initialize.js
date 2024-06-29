@@ -20,7 +20,6 @@ export async function initialize() {
         console.log(`initialize: URL parameter 'file' is ${file}`);
         logMessage(`initialize: URL parameter 'file' is ${file}`);
         
-        console.log('Is DOMPurify defined in initialize?', typeof DOMPurify);
         if (!file) {
             const errorMessage = 'Error: No book file specified.';
             document.getElementById('chapter-content').innerHTML = `<p>${errorMessage}</p>`;
@@ -29,15 +28,17 @@ export async function initialize() {
             return;
         }
 
-        console.log('initialize: About to fetch markdown');
+        console.log('initialize: About to fetch markdown for file:', file);
+        logMessage(`initialize: About to fetch markdown for file: ${file}`);
         const sanitizedHtml = await fetchMarkdown(file); // Fetch and sanitize markdown content
-        console.log('Sanitized HTML in initialize:', sanitizedHtml.slice(0, 100) + '...');  // Log first 100 characters of the sanitized HTML
+        console.log('initialize: Fetched and sanitized HTML:', sanitizedHtml.slice(0, 100) + '...');  // Log first 100 characters of the sanitized HTML
+        logMessage(`initialize: Fetched and sanitized HTML. Length: ${sanitizedHtml.length}`);
         document.getElementById('chapter-content').innerHTML = sanitizedHtml; // Inject sanitized HTML content
 
         const { toc, chapters } = generateTOC(sanitizedHtml);
         displayTOC(toc);
         generateChapters(chapters);
-        if (chapterContents.length > 0) {
+        if (chapters.length > 0) {
             showChapter(0);
         }
         hljs.highlightAll();  // Apply syntax highlighting
