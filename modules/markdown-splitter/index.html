@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Splitter</title>
+    <link rel="stylesheet" href="markdown-splitter.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Markdown Splitter</h1>
+        <div class="form-group">
+            <label for="fileInput">Upload Markdown File</label>
+            <input type="file" id="fileInput" accept=".md">
+        </div>
+        <div class="form-group">
+            <label for="headingLevel">Heading Level to Split (1-6)</label>
+            <input type="number" id="headingLevel" min="1" max="6" value="1">
+        </div>
+        <div class="form-group">
+            <button id="splitButton">Split Markdown</button>
+        </div>
+        <div class="results" id="results"></div>
+    </div>
+
+    <script src="markdown-splitter.js"></script>
+</body>
+</html>

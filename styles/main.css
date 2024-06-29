@@ -48,3 +48,24 @@ ul li a {
 ul li a:hover {
     text-decoration: underline;
 }
+
+/* Styles for the Tools section */
+.tools-section {
+    margin-top: 40px;
+}
+.tools-section ul {
+    padding: 0;
+}
+.tools-section ul li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+.tools-section ul li a {
+    font-weight: bold;
+    color: #0056b3;
+}
+.tools-section ul li a:hover {
+    color: #004080;
+}
