@@ -30,9 +30,11 @@ export async function fetchMarkdown(file) {
         logMessage(`fetchMarkdown: File fetched successfully. Length of content: ${text.length}`);
         console.log('Fetched text:', text.slice(0, 100) + '...');  // Log first 100 characters of the text
 
+        console.log('Is marked defined before conversion?', typeof marked);
         const html = marked(text); // Convert markdown to HTML
         console.log('Converted HTML:', html.slice(0, 100) + '...');  // Log first 100 characters of the HTML
 
+        console.log('Is DOMPurify defined before sanitization?', typeof DOMPurify);
         const sanitizedHtml = DOMPurify.sanitize(html); // Sanitize HTML content
         console.log('Sanitized HTML:', sanitizedHtml.slice(0, 100) + '...');  // Log first 100 characters of the sanitized HTML
 

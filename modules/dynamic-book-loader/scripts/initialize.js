@@ -29,6 +29,7 @@ export async function initialize() {
             return;
         }
 
+        console.log('initialize: About to fetch markdown');
         const sanitizedHtml = await fetchMarkdown(file); // Fetch and sanitize markdown content
         console.log('Sanitized HTML in initialize:', sanitizedHtml.slice(0, 100) + '...');  // Log first 100 characters of the sanitized HTML
         document.getElementById('chapter-content').innerHTML = sanitizedHtml; // Inject sanitized HTML content
