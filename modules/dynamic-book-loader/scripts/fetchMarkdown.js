@@ -1,5 +1,6 @@
 import { logMessage } from './log.js';
-import marked from 'marked';
+import { marked } from 'marked';
+import { DOMPurify}   from 'dompurify';
 
 console.log("fetchMarkdown.js is loaded");
 
