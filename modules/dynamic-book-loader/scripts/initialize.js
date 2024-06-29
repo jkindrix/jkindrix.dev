@@ -14,7 +14,7 @@ export async function initialize() {
     const urlParams = new URLSearchParams(window.location.search);
     const file = urlParams.get('file');
     logMessage(`initialize: URL parameter 'file' is ${file}`);
-    console.log('Is DOMPurify defined?', typeof DOMPurify);
+    console.log('Is DOMPurify defined in initialize?', typeof DOMPurify);
 
     if (!file) {
         const errorMessage = 'Error: No book file specified.';

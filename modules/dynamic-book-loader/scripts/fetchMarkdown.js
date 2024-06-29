@@ -7,7 +7,7 @@ import { logMessage } from './log.js';
  */
 export async function fetchMarkdown(file) {
     logMessage(`fetchMarkdown: Starting fetch for file: ${file}`);
-    console.log('Is marked defined?', typeof marked);
+    console.log('Is marked defined in fetchMarkdown?', typeof marked);
     const response = await fetch(file);
     logMessage(`fetchMarkdown: Received response for file: ${file} with status: ${response.status}`);
     if (!response.ok) {
@@ -18,7 +18,9 @@ export async function fetchMarkdown(file) {
     const text = await response.text();
     logMessage(`fetchMarkdown: File fetched successfully. Length of content: ${text.length}`);
     const html = marked(text); // Convert markdown to HTML
+    console.log('Converted HTML:', html);
     const sanitizedHtml = DOMPurify.sanitize(html); // Sanitize HTML content
+    console.log('Sanitized HTML:', sanitizedHtml);
     logMessage(`fetchMarkdown: Content sanitized. Length of sanitized content: ${sanitizedHtml.length}`);
     return sanitizedHtml;
 }
