@@ -12,14 +12,19 @@ export async function fetchMarkdown(file) {
         console.log(`fetchMarkdown: Starting fetch for file: ${file}`);
         logMessage(`fetchMarkdown: Starting fetch for file: ${file}`);
         
+        // Remove .md extension from the file path if present
+        const filePath = file.endsWith('.md') ? file.slice(0, -3) : file;
+        console.log(`fetchMarkdown: Adjusted file path: ${filePath}`);
+        logMessage(`fetchMarkdown: Adjusted file path: ${filePath}`);
+        
         console.log('Is marked defined in fetchMarkdown?', typeof marked);
         
-        const response = await fetch(file);
-        console.log(`fetchMarkdown: Received response for file: ${file} with status: ${response.status}`);
-        logMessage(`fetchMarkdown: Received response for file: ${file} with status: ${response.status}`);
+        const response = await fetch(filePath);
+        console.log(`fetchMarkdown: Received response for file: ${filePath} with status: ${response.status}`);
+        logMessage(`fetchMarkdown: Received response for file: ${filePath} with status: ${response.status}`);
         
         if (!response.ok) {
-            const errorMessage = `fetchMarkdown: Failed to load ${file} with status: ${response.status}`;
+            const errorMessage = `fetchMarkdown: Failed to load ${filePath} with status: ${response.status}`;
             console.error(errorMessage);
             logMessage(errorMessage);
             throw new Error(errorMessage);
