@@ -1,9 +1,10 @@
 import { logMessage } from './log.js';
+import DOMPurify from 'dompurify'; // Ensure this library is included
 
 /**
  * Fetches the markdown file from the server.
  * @param {string} file - The file to fetch.
- * @returns {Promise<string>} The content of the markdown file.
+ * @returns {Promise<string>} The sanitized HTML content of the markdown file.
  */
 export async function fetchMarkdown(file) {
     logMessage(`fetchMarkdown: Starting fetch for file: ${file}`);
@@ -16,5 +17,8 @@ export async function fetchMarkdown(file) {
     }
     const text = await response.text();
     logMessage(`fetchMarkdown: File fetched successfully. Length of content: ${text.length}`);
-    return text;
+    const html = marked(text); // Convert markdown to HTML
+    const sanitizedHtml = DOMPurify.sanitize(html); // Sanitize HTML content
+    logMessage(`fetchMarkdown: Content sanitized. Length of sanitized content: ${sanitizedHtml.length}`);
+    return sanitizedHtml;
 }

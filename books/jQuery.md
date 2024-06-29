@@ -8,12 +8,6 @@ date-modified: Friday, June 28th 2024, 8:10:41 am
 <link rel="stylesheet" href="/style.css">
 <script src="/script.js"></script>
 
-## Table of Contents
-
-<div id="toc">
-[[toc]]
-</div>
-
 ## Section 1: Introduction
 
 ### 1. Install jQuery

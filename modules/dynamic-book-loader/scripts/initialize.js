@@ -23,13 +23,15 @@ export async function initialize() {
     }
 
     try {
-        const markdown = await fetchMarkdown(file);
-        const { toc, chapters } = generateTOC(markdown);
+        const sanitizedHtml = await fetchMarkdown(file); // Fetch and sanitize markdown content
+        document.getElementById('chapter-content').innerHTML = sanitizedHtml; // Inject sanitized HTML content
+        const { toc, chapters } = generateTOC(sanitizedHtml);
         displayTOC(toc);
         generateChapters(chapters);
         if (chapterContents.length > 0) {
             showChapter(0);
         }
+        hljs.highlightAll();  // Apply syntax highlighting
     } catch (error) {
         document.getElementById('chapter-content').innerHTML = `<p>${error.message}</p>`;
         logMessage(`initialize: Error occurred - ${error.message}`);
