@@ -1,5 +1,4 @@
 import { logMessage } from './log.js';
-import DOMPurify from 'dompurify'; // Ensure this library is included
 
 /**
  * Fetches the markdown file from the server.
