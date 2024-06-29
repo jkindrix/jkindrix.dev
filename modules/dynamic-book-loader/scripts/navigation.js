@@ -1,5 +1,6 @@
 import { logMessage } from './log.js';
 import { showChapter } from './chapters.js';
+import { chapterContents } from './shared.js';
 
 /**
  * Updates the chapter navigation.

@@ -1,14 +1,13 @@
 import { logMessage } from './log.js';
 import { updateNavigation } from './navigation.js';
-
-let chapterContents = [];
+import { chapterContents, setChapterContents } from './shared.js';
 
 /**
  * Generates the chapter contents from the parsed HTML.
  * @param {Array} chapters - The list of chapter elements.
  */
 export function generateChapters(chapters) {
-    chapterContents = chapters.map((el) => {
+    const contents = chapters.map((el) => {
         let chapter = el.nextElementSibling;
         let chapterContent = '';
         while (chapter && chapter.tagName !== 'H2') {
@@ -17,6 +16,7 @@ export function generateChapters(chapters) {
         }
         return chapterContent;
     });
+    setChapterContents(contents);
     logMessage(`generateChapters: Generated chapter contents. Number of chapters: ${chapterContents.length}`);
 }
 

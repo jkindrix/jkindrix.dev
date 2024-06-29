@@ -36,7 +36,7 @@ export async function fetchMarkdown(file) {
         console.log('Fetched text:', text.slice(0, 100) + '...');  // Log first 100 characters of the text
 
         console.log('Is marked defined before conversion?', typeof marked);
-        const html = marked.parse(text); // Convert markdown to HTML
+        const html = marked.parse(text); // Convert markdown to HTML using parse
         console.log('Converted HTML:', html.slice(0, 100) + '...');  // Log first 100 characters of the HTML
 
         console.log('Is DOMPurify defined before sanitization?', typeof DOMPurify);
