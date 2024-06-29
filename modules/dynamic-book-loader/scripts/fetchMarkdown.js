@@ -1,4 +1,5 @@
 import { logMessage } from './log.js';
+import marked from 'marked';
 
 console.log("fetchMarkdown.js is loaded");
 
