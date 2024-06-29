@@ -1,25 +1,13 @@
+import { fetchBooks } from './fetchBooks.js';
+import { displayBooks } from './displayBooks.js';
+
+// Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
     const bookList = document.getElementById('book-list');
 
-    fetch('/books.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(books => {
-            bookList.innerHTML = ''; // Clear the loading message
-            books.forEach(book => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = `modules/dynamic-book-loader/index.html?file=${book.file}`;
-                link.textContent = book.title;
-                listItem.appendChild(link);
-                bookList.appendChild(listItem);
-            });
-        })
-        .catch(error => {
-            bookList.innerHTML = `<li>Error loading books: ${error.message}</li>`;
-        });
+    fetchBooks().then(books => {
+        displayBooks(bookList, books);
+    }).catch(error => {
+        bookList.innerHTML = `<li>Error loading books: ${error.message}</li>`;
+    });
 });

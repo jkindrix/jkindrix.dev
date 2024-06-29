@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markdown Splitter</title>
-    <link rel="stylesheet" href="markdown-splitter.css">
+    <meta name="description" content="Tool to split Markdown files by heading levels.">
+    <link rel="stylesheet" href="/modules/markdown-splitter/styles/markdown-splitter.css">
 </head>
 <body>
     <div class="container">
@@ -18,11 +19,11 @@
             <input type="number" id="headingLevel" min="1" max="6" value="1">
         </div>
         <div class="form-group">
-            <button id="splitButton">Split Markdown</button>
+            <button id="splitButton" type="button">Split Markdown</button>
         </div>
-        <div class="results" id="results"></div>
+        <div class="results" id="results" aria-live="polite"></div>
     </div>
 
-    <script src="markdown-splitter.js"></script>
+    <script type="module" src="/modules/markdown-splitter/scripts/markdown-splitter.js"></script>
 </body>
 </html>

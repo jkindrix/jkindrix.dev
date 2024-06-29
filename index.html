@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Book Collection</title>
+    <meta name="description" content="A collection of my favorite books and tools.">
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <header>
         <h1>My Book Collection</h1>
-        <nav aria-label="Main Navigation">
+        <nav aria-label="Main Navigation" role="navigation">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -18,7 +19,7 @@
         </nav>
     </header>
     <main class="container">
-        <h2>Books</h2>
+        <h2 id="book-list-heading">Books</h2>
         <ul id="book-list" aria-labelledby="book-list-heading">
             <!-- Dynamic content will be inserted here -->
         </ul>
@@ -26,13 +27,14 @@
         <div class="tools-section">
             <h2>Tools</h2>
             <ul>
-                <li><a href="markdown-splitter/markdown-splitter.html">Markdown Splitter</a></li>
+                <li><a href="modules/dynamic-book-loader/index.html">Dynamic Book Loader</a></li>
+                <li><a href="modules/markdown-splitter/index.html">Markdown Splitter</a></li>
             </ul>
         </div>
     </main>
     <footer>
         <p>&copy; 2024 Justin Kindrix</p>
     </footer>
-    <script src="scripts/main.js"></script>
+    <script type="module" src="scripts/main.js"></script>
 </body>
 </html>

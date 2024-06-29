@@ -1,28 +1,10 @@
-document.getElementById('splitButton').addEventListener('click', splitMarkdown);
-
-function splitMarkdown() {
-    const fileInput = document.getElementById('fileInput');
-    const headingLevel = document.getElementById('headingLevel').value;
-    const results = document.getElementById('results');
-
-    if (fileInput.files.length === 0) {
-        alert('Please upload a markdown file.');
-        return;
-    }
-
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(event) {
-        const content = event.target.result;
-        const chapters = splitContentByHeading(content, headingLevel);
-        displayResults(chapters);
-    };
-
-    reader.readAsText(file);
-}
-
-function splitContentByHeading(content, headingLevel) {
+/**
+ * Splits the markdown content by the specified heading level.
+ * @param {string} content - The markdown content.
+ * @param {number} headingLevel - The heading level to split by.
+ * @returns {Array} The list of split chapters.
+ */
+export function splitContentByHeading(content, headingLevel) {
     const headingPrefix = '#'.repeat(headingLevel) + ' ';
     const lines = content.split('\n');
     let chapters = [];
@@ -45,7 +27,11 @@ function splitContentByHeading(content, headingLevel) {
     return chapters;
 }
 
-function displayResults(chapters) {
+/**
+ * Displays the split chapters as downloadable links.
+ * @param {Array} chapters - The list of split chapters.
+ */
+export function displayResults(chapters) {
     const results = document.getElementById('results');
     results.innerHTML = '';
 
@@ -56,7 +42,7 @@ function displayResults(chapters) {
         link.href = url;
         link.download = `chapter_${index + 1}.md`;
         link.textContent = `Download Chapter ${index + 1}`;
-        link.classList.add('result-file');
+        link.classList.add('results__file');
         results.appendChild(link);
     });
 }

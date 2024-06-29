@@ -1,0 +1,42 @@
+:root {
+    --main-padding: 10px;
+    --input-margin-top: 5px;
+    --form-group-margin-bottom: 15px;
+    --container-max-width: 600px;
+    --results-margin-top: 20px;
+    --result-file-margin-bottom: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: var(--form-group-margin-bottom);
+}
+
+.form-group__label {
+    display: block;
+    margin-bottom: var(--input-margin-top);
+}
+
+.form-group__input {
+    width: 100%;
+    padding: var(--main-padding);
+    margin-top: var(--input-margin-top);
+}
+
+.results {
+    margin-top: var(--results-margin-top);
+}
+
+.results__file {
+    display: block;
+    margin-bottom: var(--result-file-margin-bottom);
+}

@@ -1,3 +1,14 @@
+:root {
+    --main-color: #007BFF;
+    --bg-color: #f4f4f4;
+    --text-color: white;
+    --sidebar-width: 200px;
+    --sidebar-bg: #f4f4f4;
+    --content-bg: #fff;
+    --debug-bg: #f8f8f8;
+    --debug-border: #ccc;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -10,8 +21,8 @@ body {
     left: 10px;
     cursor: pointer;
     font-size: 18px;
-    background: #007BFF;
-    color: white;
+    background: var(--main-color);
+    color: var(--text-color);
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
@@ -19,16 +30,16 @@ body {
 }
 
 #sidebar {
-    width: 200px;
+    width: var(--sidebar-width);
     border-right: 1px solid #ccc;
     padding: 20px;
     overflow-y: auto;
     position: fixed;
-    height: calc(100vh - 60px); /* Adjust height to leave space for the button */
-    background-color: #f4f4f4;
+    height: calc(100vh - 60px);
+    background-color: var(--sidebar-bg);
     z-index: 1000;
     display: none;
-    top: 60px; /* Move the sidebar down */
+    top: 60px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -47,7 +58,7 @@ body {
 
 #sidebar a {
     text-decoration: none;
-    color: #007BFF;
+    color: var(--main-color);
     font-weight: bold;
 }
 
@@ -59,13 +70,13 @@ body {
     padding: 20px;
     margin-left: 0;
     transition: margin-left 0.3s ease, width 0.3s ease;
-    background-color: #fff;
+    background-color: var(--content-bg);
     flex-grow: 1;
 }
 
 #content.sidebar-visible {
-    margin-left: 230px; /* Increased margin to add more space between sidebar and content */
-    width: calc(100% - 230px);
+    margin-left: calc(var(--sidebar-width) + 30px);
+    width: calc(100% - (var(--sidebar-width) + 30px));
 }
 
 .navigation {
@@ -76,7 +87,7 @@ body {
 .navigation a {
     margin: 0 10px;
     text-decoration: none;
-    color: #007BFF;
+    color: var(--main-color);
 }
 
 .navigation a:hover {
@@ -88,8 +99,8 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #f8f8f8;
-    border-top: 1px solid #ccc;
+    background: var(--debug-bg);
+    border-top: 1px solid var(--debug-border);
     padding: 10px;
     max-height: 150px;
     overflow-y: auto;
@@ -100,8 +111,8 @@ body {
 pre code {
     display: block;
     padding: 1em;
-    background: #f8f8f8;
-    border: 1px solid #ddd;
+    background: var(--debug-bg);
+    border: 1px solid var(--debug-border);
     overflow-x: auto;
     white-space: pre;
 }
@@ -176,4 +187,29 @@ pre code {
 .hljs-deletion,
 .hljs-addition {
     background: #282c34;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: none;
+        top: 0;
+        box-shadow: none;
+    }
+
+    #content.sidebar-visible {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .toggle-sidebar {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
 }
