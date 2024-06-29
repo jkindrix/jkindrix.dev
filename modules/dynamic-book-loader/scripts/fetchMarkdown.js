@@ -7,6 +7,7 @@ import { logMessage } from './log.js';
  */
 export async function fetchMarkdown(file) {
     logMessage(`fetchMarkdown: Starting fetch for file: ${file}`);
+    console.log('Is marked defined?', typeof marked);
     const response = await fetch(file);
     logMessage(`fetchMarkdown: Received response for file: ${file} with status: ${response.status}`);
     if (!response.ok) {
