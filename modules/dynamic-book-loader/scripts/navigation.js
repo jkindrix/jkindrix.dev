@@ -8,34 +8,31 @@ import { chapterContents } from './shared.js';
  */
 export function updateNavigation(index) {
     const totalChapters = chapterContents.length;
-    
-    const prevButton = document.createElement('a');
-    prevButton.href = "javascript:void(0)";
-    prevButton.innerHTML = '&laquo; Previous Chapter';
-    prevButton.addEventListener('click', () => showChapter(index - 1));
 
-    const nextButton = document.createElement('a');
-    nextButton.href = "javascript:void(0)";
-    nextButton.innerHTML = 'Next Chapter &raquo;';
-    nextButton.addEventListener('click', () => showChapter(index + 1));
+    const topNav = document.getElementById('top-navigation');
+    const bottomNav = document.getElementById('bottom-navigation');
 
-    const navContent = `
-        ${index > 0 ? prevButton.outerHTML : ''}
-        ${index < totalChapters - 1 ? nextButton.outerHTML : ''}
-    `;
-    
-    document.getElementById('top-navigation').innerHTML = navContent;
-    document.getElementById('bottom-navigation').innerHTML = navContent;
+    // Clear previous navigation content
+    topNav.innerHTML = '';
+    bottomNav.innerHTML = '';
 
     if (index > 0) {
-        document.getElementById('top-navigation').appendChild(prevButton);
-        document.getElementById('bottom-navigation').appendChild(prevButton.cloneNode(true));
+        const prevButton = document.createElement('a');
+        prevButton.href = "javascript:void(0)";
+        prevButton.innerHTML = '&laquo; Previous Chapter';
+        prevButton.addEventListener('click', () => showChapter(index - 1));
+        topNav.appendChild(prevButton);
+        bottomNav.appendChild(prevButton.cloneNode(true));
     }
 
     if (index < totalChapters - 1) {
-        document.getElementById('top-navigation').appendChild(nextButton);
-        document.getElementById('bottom-navigation').appendChild(nextButton.cloneNode(true));
+        const nextButton = document.createElement('a');
+        nextButton.href = "javascript:void(0)";
+        nextButton.innerHTML = 'Next Chapter &raquo;';
+        nextButton.addEventListener('click', () => showChapter(index + 1));
+        topNav.appendChild(nextButton);
+        bottomNav.appendChild(nextButton.cloneNode(true));
     }
-    
+
     logMessage(`updateNavigation: Updated navigation for chapter ${index}. Total chapters: ${totalChapters}`);
 }
