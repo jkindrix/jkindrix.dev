@@ -1,0 +1,8 @@
+.results {
+    margin-top: var(--results-margin-top);
+}
+
+.results__file {
+    display: block;
+    margin-bottom: var(--result-file-margin-bottom);
+}

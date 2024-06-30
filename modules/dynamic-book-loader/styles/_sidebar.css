@@ -1,0 +1,33 @@
+#sidebar {
+    width: var(--sidebar-width);
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 60px);
+    background-color: var(--sidebar-bg);
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+#sidebar.visible {
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        transform: translateY(-100%);
+        box-shadow: none;
+    }
+
+    #sidebar.visible {
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,31 @@
+.navigation {
+    text-align: center;
+}
+
+#top-navigation {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--content-bg);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+#bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--content-bg);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.navigation a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}

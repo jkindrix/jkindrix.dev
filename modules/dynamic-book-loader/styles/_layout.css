@@ -1,0 +1,18 @@
+#top-container {
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+}
+
+#content {
+    padding: 20px;
+    margin-top: 70px; /* Add top margin to push the content down */
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    background-color: var(--content-bg);
+    flex-grow: 1;
+}
+
+#content.sidebar-visible {
+    margin-left: calc(var(--sidebar-width) + 30px);
+    width: calc(100% - (var(--sidebar-width) + 30px));
+}

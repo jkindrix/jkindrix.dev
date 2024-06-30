@@ -1,0 +1,13 @@
+body {
+    font-family: var(--main-font);
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    text-align: center;
+    padding: 1em 0;
+}

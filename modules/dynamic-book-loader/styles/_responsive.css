@@ -1,0 +1,26 @@
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        transform: translateY(-100%);
+        box-shadow: none;
+    }
+
+    #content.sidebar-visible {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .toggle-sidebar {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #sidebar.visible {
+        transform: translateY(0);
+    }
+}

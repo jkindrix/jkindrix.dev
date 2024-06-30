@@ -1,0 +1,14 @@
+h2 {
+    border-bottom: 2px solid var(--main-bg-color);
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}

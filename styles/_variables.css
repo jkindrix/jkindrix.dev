@@ -1,0 +1,10 @@
+:root {
+    --main-bg-color: #333;
+    --main-text-color: white;
+    --link-hover-color: #004080;
+    --container-bg-color: white;
+    --container-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    --tools-bg-color: #f9f9f9;
+    --tools-border-color: #ddd;
+    --main-font: Arial, sans-serif;
+}

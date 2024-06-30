@@ -1,0 +1,8 @@
+:root {
+    --main-padding: 10px;
+    --input-margin-top: 5px;
+    --form-group-margin-bottom: 15px;
+    --container-max-width: 600px;
+    --results-margin-top: 20px;
+    --result-file-margin-bottom: 10px;
+}
