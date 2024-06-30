@@ -99,7 +99,7 @@ body {
     overflow-y: auto;
     font-family: monospace;
     font-size: 12px;
-    display:
+    display: none;
 }
 
 pre code {
