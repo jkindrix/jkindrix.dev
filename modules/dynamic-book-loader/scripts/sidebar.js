@@ -7,6 +7,7 @@ export function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggleButton = document.getElementById('toggle-sidebar');
     const content = document.getElementById('content');
+    
     sidebar.classList.toggle('visible');
     content.classList.toggle('sidebar-visible');
     toggleButton.textContent = sidebar.classList.contains('visible') ? 'Hide Sidebar' : 'Show Sidebar';
