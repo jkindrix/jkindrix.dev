@@ -74,7 +74,24 @@ body {
 
 .navigation {
     text-align: center;
-    margin: 20px 0;
+}
+
+#top-navigation {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--content-bg);
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+#bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--content-bg);
+    z-index: 1000;
+    padding: 10px 0;
 }
 
 .navigation a {
@@ -89,7 +106,7 @@ body {
 
 #debug {
     position: fixed;
-    bottom: 0;
+    bottom: 50px; /* Adjust according to the height of bottom-navigation */
     left: 0;
     width: 100%;
     background: var(--debug-bg);
@@ -99,7 +116,6 @@ body {
     overflow-y: auto;
     font-family: monospace;
     font-size: 12px;
-    display: none;
 }
 
 pre code {

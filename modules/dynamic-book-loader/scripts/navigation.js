@@ -22,7 +22,7 @@ export function updateNavigation(index) {
         prevButton.innerHTML = '&laquo; Previous Chapter';
         prevButton.addEventListener('click', () => showChapter(index - 1));
         topNav.appendChild(prevButton);
-        
+
         // Clone and add event listener for the bottom navigation
         const prevButtonBottom = prevButton.cloneNode(true);
         prevButtonBottom.addEventListener('click', () => showChapter(index - 1));
@@ -35,7 +35,7 @@ export function updateNavigation(index) {
         nextButton.innerHTML = 'Next Chapter &raquo;';
         nextButton.addEventListener('click', () => showChapter(index + 1));
         topNav.appendChild(nextButton);
-        
+
         // Clone and add event listener for the bottom navigation
         const nextButtonBottom = nextButton.cloneNode(true);
         nextButtonBottom.addEventListener('click', () => showChapter(index + 1));
