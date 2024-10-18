@@ -30,6 +30,7 @@ nav {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
 .nav-menu a:hover {
@@ -40,25 +41,25 @@ nav {
 header {
     background: linear-gradient(to right, #4CAF50, #3C8C4A);
     color: white;
-    padding: 2rem;
+    padding: 4rem 2rem;
     text-align: center;
     position: relative;
 }
 
 .header-content {
-    padding-top: 1.5rem;
+    padding-top: 2rem;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 header h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     font-weight: 400;
 }
 
@@ -73,22 +74,23 @@ header p {
     display: inline-block;
     background-color: #ff9800;
     color: white;
-    padding: 0.75rem 1.5rem;
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
     border-radius: 5px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-button:hover {
     background-color: #e68900;
+    transform: translateY(-2px);
 }
 
 /* Section Styling */
 section {
-    padding: 2.5rem;
-    margin: 1.5rem auto;
+    padding: 3rem;
+    margin: 2rem auto;
     max-width: 90%;
     text-align: left;
     background-color: white;
@@ -97,15 +99,24 @@ section {
 }
 
 section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 
 section p {
     margin-bottom: 1.5rem;
 }
 
-/* List Styling */
+#about {
+    background: #fffaf0;
+    padding: 3rem;
+}
+
+#contact {
+    text-align: center;
+    padding: 3rem;
+}
+
 ul {
     list-style-type: none;
     padding-left: 0;
@@ -139,14 +150,15 @@ footer p {
     margin: 0.5rem 0;
 }
 
-/* Anchor Styling */
 a {
     color: #4CAF50;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #e68900;
 }
 
 /* Utility Classes */
@@ -168,15 +180,15 @@ a:hover {
     }
 
     header {
-        padding: 4rem;
+        padding: 6rem;
     }
     
     header h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
     }
 
     header h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 
     header p {
@@ -185,7 +197,7 @@ a:hover {
 
     section {
         max-width: 80%;
-        padding: 3rem;
+        padding: 4rem;
     }
 
     .nav-menu {
