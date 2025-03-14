@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Contact - Justin Kindrix</title>
+    <link rel="stylesheet" href="style.css">
+    <noscript>
+        <link rel="stylesheet" href="style.css">
+    </noscript>
+    <link rel="stylesheet" href="critical.css" media="all">
+    <meta name="description" content="Contact page for reaching Justin Kindrix, including email and LinkedIn profile.">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-content">
+            <h1>Contact</h1>
+            <h2>Get in Touch</h2>
+            <p>For inquiries, collaborations, or support, please use the contact details below.</p>
+        </div>
+    </header>
+
+    <section id="contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Email:</strong> <a href="mailto:contact@jkindrix.dev">contact@jkindrix.dev</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jkindrix" target="_blank" rel="noopener noreferrer">linkedin.com/in/jkindrix</a></p>
+    </section>
+
+    <section id="contact-form">
+        <h2>Send a Message</h2>
+        <form action="mailto:contact@jkindrix.dev" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Justin Kindrix</p>
+        <p><a href="index.html">Back to Home</a></p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
