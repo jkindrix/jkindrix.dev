@@ -1,0 +1,6 @@
+# robots.txt for jkindrix.dev
+
+User-agent: *
+Allow: /
+
+Sitemap: https://jkindrix.dev/sitemap.xml
