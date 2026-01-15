@@ -139,6 +139,13 @@
   // ==========================================================================
 
   /**
+   * Check if user prefers reduced motion
+   */
+  function prefersReducedMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  /**
    * Handle smooth scroll for anchor links with offset for sticky header
    */
   function handleSmoothScroll(event) {
@@ -158,7 +165,7 @@
 
     window.scrollTo({
       top: targetPosition,
-      behavior: 'smooth'
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
     });
 
     // Update URL without triggering scroll
@@ -257,7 +264,7 @@
   function scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
     });
   }
 
