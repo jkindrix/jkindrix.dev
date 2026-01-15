@@ -85,6 +85,12 @@
   </script>
 </head>
 <body>
+  <!-- Skip to Content (Accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <!-- Header -->
   <header class="site-header">
     <nav class="nav container">
@@ -120,12 +126,12 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main-content">
     <!-- Hero Section -->
-    <section class="section section--hero hero">
+    <section class="section section--hero hero" data-animate="fade-up">
       <div class="container">
-        <span class="hero__badge">Principal Engineer</span>
-        <h1 class="hero__title">Justin Kindrix</h1>
+        <span class="hero__badge animate-badge">Principal Engineer</span>
+        <h1 class="hero__title hero__title--gradient">Justin Kindrix</h1>
         <p class="hero__subtitle">Language Designer & Systems Engineer</p>
         <p class="hero__description">
           I build compilers, database drivers, and AI integration tools. 13+ years architecting modular, scalable systems across software, infrastructure, and automation.
@@ -148,18 +154,18 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section projects">
+    <section id="projects" class="section projects" data-animate="fade-up">
       <div class="container">
-        <header class="section__header">
+        <header class="section__header" data-animate="fade-up">
           <h2 class="section__title">Open Source Projects</h2>
           <p class="section__subtitle">
             Systems programming tools, database infrastructure, and AI integration libraries
           </p>
         </header>
 
-        <div class="project-grid">
+        <div class="project-grid" data-animate="stagger">
           <!-- Featured: Blood Programming Language -->
-          <article class="card project--featured">
+          <article class="card project--featured" data-animate-child>
             <div>
               <div class="card__header">
                 <div class="card__icon">
@@ -187,20 +193,20 @@
                 </svg>
               </a>
             </div>
-            <div>
-              <pre><code>effect Error&lt;E&gt; {
-    op raise(err: E) -&gt; never
+            <div class="code-block">
+              <pre><code><span class="code-keyword">effect</span> <span class="code-type">Error</span>&lt;<span class="code-type">E</span>&gt; {
+    <span class="code-keyword">op</span> <span class="code-function">raise</span>(err: <span class="code-type">E</span>) -&gt; <span class="code-keyword">never</span>
 }
 
-fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
-    let data = read_file(path)
-    parse_config(data)
+<span class="code-keyword">fn</span> <span class="code-function">load_config</span>(path: <span class="code-type">Path</span>) -&gt; <span class="code-type">Config</span> / {<span class="code-type">IO</span>, <span class="code-type">Error</span>&lt;<span class="code-type">ParseError</span>&gt;} {
+    <span class="code-keyword">let</span> data = <span class="code-function">read_file</span>(path)
+    <span class="code-function">parse_config</span>(data)
 }</code></pre>
             </div>
           </article>
 
           <!-- rust-mssql-driver -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -229,7 +235,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
           </article>
 
           <!-- mcpkit -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -258,7 +264,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
           </article>
 
           <!-- rust-expect -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -287,7 +293,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
           </article>
 
           <!-- plait -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -315,7 +321,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
           </article>
 
           <!-- guvnr -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -344,7 +350,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
           </article>
 
           <!-- mssql-mcp-server -->
-          <article class="card">
+          <article class="card" data-animate-child>
             <div class="card__header">
               <div class="card__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -384,17 +390,17 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
     </section>
 
     <!-- Expertise Section -->
-    <section id="expertise" class="section">
+    <section id="expertise" class="section" data-animate="fade-up">
       <div class="container">
-        <header class="section__header">
+        <header class="section__header" data-animate="fade-up">
           <h2 class="section__title">Technical Expertise</h2>
           <p class="section__subtitle">
             Deep specialization across systems programming, mobile development, and infrastructure
           </p>
         </header>
 
-        <div class="skills-grid">
-          <article class="card skill-card">
+        <div class="skills-grid" data-animate="stagger">
+          <article class="card skill-card" data-animate-child>
             <div class="card__icon skill-card__icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -406,7 +412,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
             </p>
           </article>
 
-          <article class="card skill-card">
+          <article class="card skill-card" data-animate-child>
             <div class="card__icon skill-card__icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -418,7 +424,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
             </p>
           </article>
 
-          <article class="card skill-card">
+          <article class="card skill-card" data-animate-child>
             <div class="card__icon skill-card__icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -430,7 +436,7 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
             </p>
           </article>
 
-          <article class="card skill-card">
+          <article class="card skill-card" data-animate-child>
             <div class="card__icon skill-card__icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
@@ -446,16 +452,16 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section">
+    <section id="experience" class="section" data-animate="fade-up">
       <div class="container">
-        <header class="section__header">
+        <header class="section__header" data-animate="fade-up">
           <h2 class="section__title">Experience</h2>
           <p class="section__subtitle">
             Self-taught engineer: 13+ years from tech support to Principal Engineer
           </p>
         </header>
 
-        <div class="experience-list">
+        <div class="experience-list" data-animate="fade-up">
           <article class="experience-item">
             <div class="experience__meta">
               <p class="experience__company">Nuby / Luv n' care, Ltd.</p>
@@ -516,9 +522,9 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <section id="contact" class="section contact" data-animate="fade-up">
       <div class="container">
-        <div class="contact__content">
+        <div class="contact__content" data-animate="fade-up">
           <h2 class="section__title">Get in Touch</h2>
           <p>
             Interested in collaborating on systems programming, infrastructure tools, or language design? I'm always open to discussing interesting technical challenges.
@@ -576,6 +582,13 @@ fn load_config(path: Path) -&gt; Config / {IO, Error&lt;ParseError&gt;} {
       </div>
     </div>
   </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
 
   <script src="script.js" defer></script>
 </body>

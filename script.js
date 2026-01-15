@@ -216,6 +216,83 @@
   }
 
   // ==========================================================================
+  // Scroll Progress Indicator
+  // ==========================================================================
+
+  /**
+   * Update scroll progress bar width
+   */
+  function updateScrollProgress() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    if (!scrollProgress) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    scrollProgress.style.width = `${scrollPercent}%`;
+  }
+
+  // ==========================================================================
+  // Back to Top Button
+  // ==========================================================================
+
+  /**
+   * Show/hide back to top button based on scroll position
+   */
+  function updateBackToTop() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+
+    if (window.scrollY > 500) {
+      backToTop.classList.add('back-to-top--visible');
+    } else {
+      backToTop.classList.remove('back-to-top--visible');
+    }
+  }
+
+  /**
+   * Scroll to top of page
+   */
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // ==========================================================================
+  // Scroll-triggered Animations
+  // ==========================================================================
+
+  /**
+   * Initialize Intersection Observer for scroll animations
+   */
+  function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('[data-animate]');
+
+    if (!animatedElements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-visible');
+            // Optionally unobserve after animation
+            // observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    animatedElements.forEach((el) => observer.observe(el));
+  }
+
+  // ==========================================================================
   // Initialization
   // ==========================================================================
 
@@ -247,17 +324,32 @@
     // Smooth scroll for anchor links
     document.addEventListener('click', handleSmoothScroll);
 
-    // Active nav state on scroll
+    // Back to top button
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+      backToTop.addEventListener('click', scrollToTop);
+    }
+
+    // Scroll animations
+    initScrollAnimations();
+
+    // Combined scroll handler for performance
     let scrollTimeout;
     window.addEventListener('scroll', () => {
       if (scrollTimeout) {
         window.cancelAnimationFrame(scrollTimeout);
       }
-      scrollTimeout = window.requestAnimationFrame(updateActiveNav);
+      scrollTimeout = window.requestAnimationFrame(() => {
+        updateActiveNav();
+        updateScrollProgress();
+        updateBackToTop();
+      });
     }, { passive: true });
 
-    // Initial active state
+    // Initial states
     updateActiveNav();
+    updateScrollProgress();
+    updateBackToTop();
 
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
