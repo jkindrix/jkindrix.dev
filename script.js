@@ -56,8 +56,8 @@
     applyTheme(getPreferredTheme());
   }
 
-  // Apply theme immediately to prevent flash of unstyled content
-  initTheme();
+  // Note: Theme is applied via inline script in <head> to prevent FOUC.
+  // The initTheme function is available for programmatic theme changes.
 
   // ==========================================================================
   // Mobile Navigation
@@ -77,14 +77,6 @@
     menu.classList.toggle('nav__menu--open');
     toggle.setAttribute('aria-expanded', !isOpen);
 
-    // Update icon
-    const openIcon = toggle.querySelector('.nav__toggle-open');
-    const closeIcon = toggle.querySelector('.nav__toggle-close');
-
-    if (openIcon && closeIcon) {
-      openIcon.style.display = isOpen ? 'block' : 'none';
-      closeIcon.style.display = isOpen ? 'none' : 'block';
-    }
   }
 
   /**
@@ -201,8 +193,10 @@
 
     navLinks.forEach(link => {
       link.classList.remove('nav__link--active');
+      link.removeAttribute('aria-current');
       if (link.getAttribute('href') === `#${currentSection}`) {
         link.classList.add('nav__link--active');
+        link.setAttribute('aria-current', 'true');
       }
     });
   }
@@ -212,14 +206,43 @@
   // ==========================================================================
 
   /**
-   * Handle contact form submission
+   * Check for success parameter in URL and show success message
+   */
+  function checkFormSuccess() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const formResult = document.querySelector('.form-result');
+
+    if (urlParams.get('success') === 'true' && formResult) {
+      formResult.textContent = 'Thank you! Your message has been sent successfully.';
+      formResult.classList.add('form-result--success');
+
+      // Remove the success parameter from URL without page reload
+      const url = new URL(window.location);
+      url.searchParams.delete('success');
+      window.history.replaceState({}, '', url);
+    }
+  }
+
+  /**
+   * Handle contact form submission with loading state
    */
   function handleFormSubmit(event) {
     const form = event.target;
     if (!form.classList.contains('contact-form')) return;
 
-    // Basic form validation is handled by HTML5
-    // This could be extended for AJAX submission if needed
+    const submitBtn = form.querySelector('.form-submit');
+    const formResult = form.querySelector('.form-result');
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+    }
+
+    // Clear any previous result messages
+    if (formResult) {
+      formResult.className = 'form-result';
+      formResult.textContent = '';
+    }
   }
 
   // ==========================================================================
@@ -330,6 +353,15 @@
 
     // Smooth scroll for anchor links
     document.addEventListener('click', handleSmoothScroll);
+
+    // Contact form
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', handleFormSubmit);
+    }
+
+    // Check for form submission success
+    checkFormSuccess();
 
     // Back to top button
     const backToTop = document.querySelector('.back-to-top');

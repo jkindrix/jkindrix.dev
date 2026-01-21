@@ -497,6 +497,15 @@ pre code {
   height: 1.5rem;
 }
 
+/* Toggle icon visibility based on menu state */
+.nav__toggle[aria-expanded="false"] .nav__toggle-close {
+  display: none;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-open {
+  display: none;
+}
+
 /* Mobile menu - default state (mobile-first) */
 .nav__menu {
   position: fixed;
@@ -735,6 +744,17 @@ pre code {
   transform: translateY(-2px);
 }
 
+/* Card as link (removes text decoration) */
+a.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.card:hover,
+a.card:active {
+  text-decoration: none;
+}
+
 .card--hover:active {
   transform: translateY(0);
 }
@@ -856,11 +876,6 @@ pre code {
 @media (min-width: 640px) {
   .project-grid {
     gap: var(--space-6);
-  }
-}
-
-@media (min-width: 640px) {
-  .project-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -1098,6 +1113,33 @@ pre code {
   width: 100%;
 }
 
+.form-result {
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  display: none;
+}
+
+.form-result--success {
+  display: block;
+  background-color: var(--color-success);
+  color: white;
+}
+
+.form-result--error {
+  display: block;
+  background-color: var(--color-error);
+  color: white;
+}
+
+/* Contact Location Card */
+.contact-location {
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */
@@ -1239,7 +1281,23 @@ pre code {
 }
 
 .legal-document {
+  max-width: 48rem;
+  margin: var(--space-12) auto 0;
   line-height: var(--leading-relaxed);
+}
+
+/* Policies Page Grid */
+.policies-grid {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 48rem;
+  margin: var(--space-12) auto 0;
+}
+
+/* Back to Policies Link */
+.policies-back {
+  text-align: center;
+  margin-top: var(--space-12);
 }
 
 .legal-section {
@@ -1354,7 +1412,7 @@ pre code {
   transform: translateY(1rem);
   transition: all var(--transition-base);
   box-shadow: var(--shadow-lg);
-  z-index: 99;
+  z-index: 101;
 }
 
 @media (min-width: 640px) {
@@ -1398,15 +1456,15 @@ pre code {
 }
 
 .code-block pre {
-  padding-left: var(--space-4);
   counter-reset: line;
   font-size: var(--text-xs);
+  padding-left: var(--space-4);
 }
 
 @media (min-width: 640px) {
   .code-block pre {
-    padding-left: 3.5rem;
     font-size: var(--text-sm);
+    padding-left: 0;
   }
 }
 
@@ -1415,9 +1473,33 @@ pre code {
 }
 
 /* Line numbers via CSS counter */
-.code-block pre code::before {
+.code-line {
+  display: block;
+  position: relative;
+  padding-left: 2.5rem;
+  min-height: 1.5em;
+}
+
+.code-line::before {
   content: counter(line);
   counter-increment: line;
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  text-align: right;
+  color: var(--color-text-muted);
+  user-select: none;
+  font-size: 0.85em;
+}
+
+@media (min-width: 640px) {
+  .code-line {
+    padding-left: 3rem;
+  }
+
+  .code-line::before {
+    width: 2.5rem;
+  }
 }
 
 .code-keyword {
@@ -1446,7 +1528,7 @@ pre code {
   color: #d19a66;
 }
 
-/* Dark theme adjustments */
+/* Light theme syntax highlighting adjustments */
 [data-theme="light"] .code-keyword {
   color: #a626a4;
 }
@@ -1679,6 +1761,10 @@ pre code {
 
 .mt-8 {
   margin-top: var(--space-8);
+}
+
+.mt-12 {
+  margin-top: var(--space-12);
 }
 
 .mb-4 {
