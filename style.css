@@ -1456,15 +1456,12 @@ a.card:active {
 }
 
 .code-block pre {
-  counter-reset: line;
   font-size: var(--text-xs);
-  padding-left: var(--space-4);
 }
 
 @media (min-width: 640px) {
   .code-block pre {
     font-size: var(--text-sm);
-    padding-left: 0;
   }
 }
 
@@ -1472,34 +1469,10 @@ a.card:active {
   display: block;
 }
 
-/* Line numbers via CSS counter */
+/* Code lines */
 .code-line {
   display: block;
-  position: relative;
-  padding-left: 2.5rem;
   min-height: 1.5em;
-}
-
-.code-line::before {
-  content: counter(line);
-  counter-increment: line;
-  position: absolute;
-  left: 0;
-  width: 2rem;
-  text-align: right;
-  color: var(--color-text-muted);
-  user-select: none;
-  font-size: 0.85em;
-}
-
-@media (min-width: 640px) {
-  .code-line {
-    padding-left: 3rem;
-  }
-
-  .code-line::before {
-    width: 2.5rem;
-  }
 }
 
 .code-keyword {
