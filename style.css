@@ -1503,36 +1503,52 @@ pre code {
 .animate-badge::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: -50%;
   left: -100%;
-  width: 50%;
-  height: 100%;
+  width: 80%;
+  height: 200%;
+  /*
+   * Realistic shine effect based on specular highlight physics:
+   * - Diagonal angle (120°) simulates overhead light source
+   * - Multi-stop gradient creates soft microfacet scattering effect
+   * - Subtle warm tint (cream/gold) instead of pure white
+   * - Gradual falloff mimics diffuse reflection on semi-gloss surface
+   */
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
+    120deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 253, 245, 0.08) 42%,
+    rgba(255, 251, 235, 0.18) 47%,
+    rgba(255, 250, 230, 0.25) 50%,
+    rgba(255, 251, 235, 0.18) 53%,
+    rgba(255, 253, 245, 0.08) 58%,
+    transparent 65%,
+    transparent 100%
   );
-  animation: badge-shine 4s ease-in-out infinite;
+  /* Skew adds natural light-catching angle */
+  transform: skewX(-20deg);
+  /* Smooth easing with longer duration for subtle effect */
+  animation: badge-shine 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes badge-shine {
   0% {
-    left: -50%;
+    left: -100%;
     opacity: 0;
   }
-  10% {
-    opacity: 1;
-  }
-  35% {
-    left: 120%;
+  5% {
     opacity: 1;
   }
   40% {
+    left: 150%;
+    opacity: 1;
+  }
+  45% {
     opacity: 0;
   }
   100% {
-    left: 120%;
+    left: 150%;
     opacity: 0;
   }
 }
