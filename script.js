@@ -47,6 +47,11 @@
     const next = current === DARK ? LIGHT : DARK;
     localStorage.setItem(THEME_KEY, next);
     applyTheme(next);
+
+    const announcement = document.getElementById('theme-announcement');
+    if (announcement) {
+      announcement.textContent = next === DARK ? 'Dark mode enabled' : 'Light mode enabled';
+    }
   }
 
   /**
@@ -76,7 +81,7 @@
 
     menu.classList.toggle('nav__menu--open');
     toggle.setAttribute('aria-expanded', !isOpen);
-
+    toggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
   }
 
   /**
@@ -92,6 +97,7 @@
     if (!menu.contains(event.target) && !toggle.contains(event.target)) {
       menu.classList.remove('nav__menu--open');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation menu');
     }
   }
 
@@ -109,6 +115,7 @@
 
     menu.classList.remove('nav__menu--open');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
     toggle.focus();
   }
 
@@ -124,6 +131,37 @@
 
     menu.classList.remove('nav__menu--open');
     toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+  }
+
+  /**
+   * Trap focus within mobile nav when open
+   */
+  function trapFocus(event) {
+    if (event.key !== 'Tab') return;
+
+    const menu = document.querySelector('.nav__menu');
+    const toggle = document.querySelector('.nav__toggle');
+
+    if (!menu || !menu.classList.contains('nav__menu--open')) return;
+
+    const focusableElements = menu.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+    const focusable = [toggle].concat(Array.prototype.slice.call(focusableElements));
+
+    const firstFocusable = focusable[0];
+    const lastFocusable = focusable[focusable.length - 1];
+
+    if (event.shiftKey) {
+      if (document.activeElement === firstFocusable) {
+        event.preventDefault();
+        lastFocusable.focus();
+      }
+    } else {
+      if (document.activeElement === lastFocusable) {
+        event.preventDefault();
+        firstFocusable.focus();
+      }
+    }
   }
 
   // ==========================================================================
@@ -160,8 +198,22 @@
       behavior: prefersReducedMotion() ? 'auto' : 'smooth'
     });
 
-    // Update URL without triggering scroll
+    // Update URL and document title
     history.pushState(null, '', targetId);
+    document.title = getSectionTitle(targetId);
+  }
+
+  /**
+   * Get page title for a given hash target
+   */
+  function getSectionTitle(hash) {
+    const baseTitle = 'Justin Kindrix - Principal Engineer & Language Designer';
+    if (!hash || hash === '#') return baseTitle;
+    const target = document.querySelector(hash);
+    if (!target) return baseTitle;
+    const heading = target.querySelector('h1, h2');
+    const sectionName = heading ? heading.textContent.trim() : hash.replace('#', '');
+    return sectionName + ' - Justin Kindrix';
   }
 
   // ==========================================================================
@@ -303,13 +355,19 @@
 
     if (!animatedElements.length) return;
 
+    if (!('IntersectionObserver' in window)) {
+      animatedElements.forEach(function(el) {
+        el.classList.add('animate-visible');
+      });
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-visible');
-            // Optionally unobserve after animation
-            // observer.unobserve(entry.target);
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -342,8 +400,9 @@
     // Close mobile nav on outside click
     document.addEventListener('click', handleClickOutside);
 
-    // Close mobile nav on Escape
+    // Close mobile nav on Escape and trap focus
     document.addEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', trapFocus);
 
     // Close mobile nav on link click
     const navLinks = document.querySelectorAll('.nav__link');
@@ -389,6 +448,28 @@
     updateActiveNav();
     updateScrollProgress();
     updateBackToTop();
+
+    // Handle browser back/forward for anchor navigation
+    window.addEventListener('popstate', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          const headerHeight = document.querySelector('.site-header')?.offsetHeight || 0;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+          });
+        }
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        });
+      }
+      document.title = getSectionTitle(hash);
+    });
 
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {

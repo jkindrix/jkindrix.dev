@@ -11,6 +11,7 @@
   <meta name="author" content="Justin Kindrix">
   <meta name="keywords" content="software engineer, systems programming, rust, compiler design, database driver, MCP, AI integration, full-stack developer, mobile development, Tokio, LLM orchestration, Kotlin, Jetpack Compose, Swift, SwiftUI, ASP.NET Core, Bluetooth Low Energy">
   <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -33,6 +34,9 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%232563eb'>JK</text></svg>">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://jkindrix.dev/">
@@ -48,7 +52,7 @@
     "name": "Justin Kindrix",
     "jobTitle": "Principal Engineer",
     "description": "Principal Engineer building systems programming languages, database drivers, and AI integration tools.",
-    "url": "https://jkindrix.dev",
+    "url": "https://jkindrix.dev/",
     "email": "jkindrix@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -86,6 +90,7 @@
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
+  <noscript><style>[data-animate],[data-animate="stagger"] [data-animate-child]{opacity:1!important;transform:none!important}.nav__menu{position:static!important;transform:none!important;opacity:1!important;visibility:visible!important}.nav__toggle{display:none!important}</style></noscript>
 </head>
 <body>
   <!-- Skip to Content (Accessibility) -->
@@ -99,7 +104,7 @@
     <nav class="nav container">
       <a href="/" class="nav__logo">Justin Kindrix</a>
 
-      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <button class="nav__toggle" aria-label="Open navigation menu" aria-expanded="false">
         <svg class="nav__toggle-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -131,7 +136,7 @@
 
   <main id="main-content">
     <!-- Hero Section -->
-    <section class="section section--hero hero" data-animate="fade-up">
+    <section class="section section--hero hero" data-animate="fade-up" aria-label="Introduction">
       <div class="container">
         <span class="hero__badge animate-badge">Principal Engineer</span>
         <h1 class="hero__title hero__title--gradient">Justin Kindrix</h1>
@@ -157,10 +162,10 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section projects" data-animate="fade-up">
+    <section id="projects" class="section projects" data-animate="fade-up" aria-labelledby="projects-heading">
       <div class="container">
         <header class="section__header" data-animate="fade-up">
-          <h2 class="section__title">Open Source Projects</h2>
+          <h2 id="projects-heading" class="section__title">Open Source Projects</h2>
           <p class="section__subtitle">
             Systems programming tools, database infrastructure, and AI integration libraries
           </p>
@@ -393,10 +398,10 @@
     </section>
 
     <!-- Expertise Section -->
-    <section id="expertise" class="section" data-animate="fade-up">
+    <section id="expertise" class="section" data-animate="fade-up" aria-labelledby="expertise-heading">
       <div class="container">
         <header class="section__header" data-animate="fade-up">
-          <h2 class="section__title">Technical Expertise</h2>
+          <h2 id="expertise-heading" class="section__title">Technical Expertise</h2>
           <p class="section__subtitle">
             Deep specialization across systems programming, mobile development, and infrastructure
           </p>
@@ -455,10 +460,10 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section" data-animate="fade-up">
+    <section id="experience" class="section" data-animate="fade-up" aria-labelledby="experience-heading">
       <div class="container">
         <header class="section__header" data-animate="fade-up">
-          <h2 class="section__title">Experience</h2>
+          <h2 id="experience-heading" class="section__title">Experience</h2>
           <p class="section__subtitle">
             Self-taught engineer: 13+ years from tech support to Principal Engineer
           </p>
@@ -525,10 +530,10 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact" data-animate="fade-up">
+    <section id="contact" class="section contact" data-animate="fade-up" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact__content" data-animate="fade-up">
-          <h2 class="section__title">Get in Touch</h2>
+          <h2 id="contact-heading" class="section__title">Get in Touch</h2>
           <p>
             Interested in collaborating on systems programming, infrastructure tools, or language design? I'm always open to discussing interesting technical challenges.
           </p>
@@ -593,6 +598,7 @@
     </svg>
   </button>
 
+  <div id="theme-announcement" class="sr-only" aria-live="polite"></div>
   <script src="script.js"></script>
 </body>
 </html>
