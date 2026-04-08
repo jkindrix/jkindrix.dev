@@ -254,98 +254,6 @@
   }
 
   // ==========================================================================
-  // Form Enhancement
-  // ==========================================================================
-
-  /**
-   * Check for success parameter in URL and show success message
-   */
-  function checkFormSuccess() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const formResult = document.querySelector('.form-result');
-
-    if (urlParams.get('success') === 'true' && formResult) {
-      formResult.textContent = 'Thank you! Your message has been sent successfully.';
-      formResult.classList.add('form-result--success');
-
-      // Remove the success parameter from URL without page reload
-      const url = new URL(window.location);
-      url.searchParams.delete('success');
-      window.history.replaceState({}, '', url);
-    }
-  }
-
-  /**
-   * Handle contact form submission via fetch with proper error recovery.
-   *
-   * The previous implementation let the browser submit the form natively
-   * and disabled the button without any failure path — if submission errored
-   * (network down, backend rejecting, missing access_key), the button stayed
-   * permanently disabled with no message to the user. This implementation
-   * intercepts the submit, posts via fetch to web3forms, and:
-   *   - On success: shows the success message and resets the form.
-   *   - On HTTP/network error: shows an error message that includes a fallback
-   *     channel (the email address) and re-enables the button.
-   *   - In all cases: re-enables the button via finally{} so it can never get
-   *     stuck.
-   */
-  async function handleFormSubmit(event) {
-    const form = event.target;
-    if (!form.classList.contains('contact-form')) return;
-
-    event.preventDefault();
-
-    const submitBtn = form.querySelector('.form-submit');
-    const formResult = form.querySelector('.form-result');
-    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-    }
-
-    if (formResult) {
-      formResult.className = 'form-result';
-      formResult.textContent = '';
-    }
-
-    try {
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      let data = null;
-      try { data = await response.json(); } catch (_) { /* non-JSON response */ }
-
-      if (response.ok && data && data.success) {
-        if (formResult) {
-          formResult.textContent = 'Thank you! Your message has been sent successfully.';
-          formResult.classList.add('form-result--success');
-        }
-        form.reset();
-      } else {
-        const reason = (data && data.message) ? data.message : ('HTTP ' + response.status);
-        throw new Error(reason);
-      }
-    } catch (err) {
-      if (formResult) {
-        formResult.textContent =
-          "Sorry — your message couldn't be sent (" + err.message +
-          '). Please email jkindrix@gmail.com directly and I will respond as soon as possible.';
-        formResult.classList.add('form-result--error');
-      }
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHTML;
-      }
-    }
-  }
-
-  // ==========================================================================
   // Off-Screen Animation Pause
   // ==========================================================================
 
@@ -487,15 +395,6 @@
 
     // Smooth scroll for anchor links
     document.addEventListener('click', handleSmoothScroll);
-
-    // Contact form
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', handleFormSubmit);
-    }
-
-    // Check for form submission success
-    checkFormSuccess();
 
     // Back to top button
     const backToTop = document.querySelector('.back-to-top');
