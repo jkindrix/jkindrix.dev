@@ -1,0 +1,15 @@
+# Local development tooling — not part of the published site
+.mcp.json
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Node (in case any tooling lands here)
+node_modules/
+npm-debug.log*
