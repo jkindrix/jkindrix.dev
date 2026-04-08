@@ -740,6 +740,9 @@ pre code {
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   transition: all var(--transition-base);
+  /* Allow card to shrink below its intrinsic content width inside grid/flex
+     parents — pairs with minmax(0, 1fr) on the grid tracks. */
+  min-width: 0;
 }
 
 .card:hover,
@@ -831,6 +834,9 @@ a.card:active {
   padding: var(--space-1) var(--space-2);
   background-color: var(--color-bg-tertiary);
   color: var(--color-text-tertiary);
+  /* Stays at text-sm (14px) on mobile rather than dropping to text-xs (12px),
+     which the independent review flagged as marginally readable on small
+     screens (#47). */
   font-size: var(--text-sm);
   font-weight: 500;
   border-radius: var(--radius-md);
@@ -888,18 +894,23 @@ a.card:active {
 .project-grid {
   display: grid;
   gap: var(--space-4);
+  /* minmax(0, 1fr) lets tracks shrink below their content's intrinsic width.
+     Without this, an unbreakable child (e.g. the featured code block's
+     long lines) can blow out the column width past the viewport, causing
+     horizontal overflow at narrow widths and high text-zoom levels (WCAG 1.4.10). */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 @media (min-width: 640px) {
   .project-grid {
     gap: var(--space-6);
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .project-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -911,7 +922,7 @@ a.card:active {
 @media (min-width: 640px) {
   .project--featured {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-8);
     align-items: center;
   }
@@ -931,13 +942,13 @@ a.card:active {
 
 @media (min-width: 640px) {
   .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .skills-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1483,6 +1494,9 @@ a.card:active {
 .code-block {
   position: relative;
   overflow-x: auto;
+  /* Required so the code block can scroll horizontally inside a grid/flex
+     parent instead of expanding the parent to fit its widest line. */
+  min-width: 0;
 }
 
 .code-block pre {
@@ -1609,6 +1623,16 @@ a.card:active {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* Pause infinite animations when JS marks them off-screen.
+   Applied to elements observed by IntersectionObserver in script.js
+   (.hero__title--gradient, .animate-badge) so they don't burn GPU/battery
+   while scrolled out of view. */
+.is-offscreen,
+.is-offscreen::before,
+.is-offscreen::after {
+  animation-play-state: paused !important;
 }
 
 @keyframes gradient-shift {
@@ -1738,6 +1762,16 @@ a.card:active {
 
 /* --------------------------------------------------------------------------
    Enhanced Card Hover States
+
+   Implementation note: The .card::before pseudo-element draws a gradient
+   border ring (1px wide). It uses CSS mask-composite to keep ONLY the ring
+   and clear the interior to transparent. This is critical because data-animate
+   applies a transform to each card, which creates a new stacking context —
+   any previous z-index:-1 trick that depended on rendering "behind" the card
+   would instead render OVER the card background and destroy text contrast on
+   hover. The masked ring approach is immune to stacking contexts: the
+   pseudo-element's interior is transparent, so it cannot cover card text
+   regardless of how the stacking context resolves.
    -------------------------------------------------------------------------- */
 .card {
   position: relative;
@@ -1748,9 +1782,20 @@ a.card:active {
   position: absolute;
   inset: -1px;
   border-radius: var(--radius-xl);
+  padding: 1px; /* the gradient ring thickness */
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  /* Mask out the interior so only the 1px ring shows. The two mask layers
+     are composited with XOR/exclude, leaving only the padding-thick frame. */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+          mask-composite: exclude;
   opacity: 0;
-  z-index: -1;
+  pointer-events: none;
   transition: opacity var(--transition-base);
 }
 
