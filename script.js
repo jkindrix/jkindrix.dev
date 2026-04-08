@@ -276,25 +276,100 @@
   }
 
   /**
-   * Handle contact form submission with loading state
+   * Handle contact form submission via fetch with proper error recovery.
+   *
+   * The previous implementation let the browser submit the form natively
+   * and disabled the button without any failure path — if submission errored
+   * (network down, backend rejecting, missing access_key), the button stayed
+   * permanently disabled with no message to the user. This implementation
+   * intercepts the submit, posts via fetch to web3forms, and:
+   *   - On success: shows the success message and resets the form.
+   *   - On HTTP/network error: shows an error message that includes a fallback
+   *     channel (the email address) and re-enables the button.
+   *   - In all cases: re-enables the button via finally{} so it can never get
+   *     stuck.
    */
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     const form = event.target;
     if (!form.classList.contains('contact-form')) return;
 
+    event.preventDefault();
+
     const submitBtn = form.querySelector('.form-submit');
     const formResult = form.querySelector('.form-result');
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
 
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
     }
 
-    // Clear any previous result messages
     if (formResult) {
       formResult.className = 'form-result';
       formResult.textContent = '';
     }
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      let data = null;
+      try { data = await response.json(); } catch (_) { /* non-JSON response */ }
+
+      if (response.ok && data && data.success) {
+        if (formResult) {
+          formResult.textContent = 'Thank you! Your message has been sent successfully.';
+          formResult.classList.add('form-result--success');
+        }
+        form.reset();
+      } else {
+        const reason = (data && data.message) ? data.message : ('HTTP ' + response.status);
+        throw new Error(reason);
+      }
+    } catch (err) {
+      if (formResult) {
+        formResult.textContent =
+          "Sorry — your message couldn't be sent (" + err.message +
+          '). Please email jkindrix@gmail.com directly and I will respond as soon as possible.';
+        formResult.classList.add('form-result--error');
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
+    }
+  }
+
+  // ==========================================================================
+  // Off-Screen Animation Pause
+  // ==========================================================================
+
+  /**
+   * Pause infinite CSS animations when their host elements scroll out of view.
+   *
+   * Two animations on this site loop forever (gradient-shift on the hero
+   * title, badge-shine on .animate-badge). They keep painting even when
+   * scrolled below the fold, which wastes GPU and battery on mobile.
+   * Toggling the .is-offscreen class switches them to animation-play-state:
+   * paused (CSS rule defined in style.css).
+   */
+  function initOffscreenAnimationPause() {
+    if (!('IntersectionObserver' in window)) return;
+    const targets = document.querySelectorAll('.hero__title--gradient, .animate-badge');
+    if (!targets.length) return;
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+    }, { rootMargin: '0px' });
+
+    targets.forEach(function(el) { observer.observe(el); });
   }
 
   // ==========================================================================
@@ -430,6 +505,9 @@
 
     // Scroll animations
     initScrollAnimations();
+
+    // Pause infinite animations (hero gradient, badge shine) when off-screen
+    initOffscreenAnimationPause();
 
     // Combined scroll handler for performance
     let scrollTimeout;
