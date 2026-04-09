@@ -1,0 +1,7 @@
+# Security contact for jkindrix.dev
+# Published per RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116).
+
+Contact: mailto:jkindrix@gmail.com
+Expires: 2027-04-08T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://jkindrix.dev/.well-known/security.txt
