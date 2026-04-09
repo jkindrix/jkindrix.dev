@@ -162,6 +162,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
+  /* Defensive: any future wide element (long unbroken URL, image, chart)
+     will be clipped horizontally rather than breaking the page layout.
+     `clip` is preferred over `hidden` because it doesn't establish a scroll
+     container and doesn't interfere with position: sticky on the header. */
+  overflow-x: clip;
 }
 
 body {
@@ -173,6 +178,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--transition-slow), color var(--transition-slow);
+  overflow-x: clip;
 }
 
 img,
@@ -394,7 +400,12 @@ pre code {
   font-weight: 700;
   color: var(--color-text-primary);
   text-decoration: none;
-  padding: 0.5rem 0;
+  /* Inline-flex + min-height gives the logo a 44px tap target (WCAG 2.5.5 AAA)
+     rather than the ~36px the font-size alone would produce. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-2) 0;
 }
 
 .nav__logo:hover {
@@ -515,7 +526,10 @@ pre code {
   left: 0;
   right: 0;
   flex-direction: column;
-  gap: 0;
+  /* Small gap gives the drawer items visual rhythm so they don't feel
+     crammed together. Still well within the 44px tap-target minimum per
+     row because .nav__link has its own padding. */
+  gap: var(--space-1);
   background-color: var(--color-bg-primary);
   border-bottom: 1px solid var(--color-border);
   padding: var(--space-4);
@@ -1137,6 +1151,9 @@ a.card:active {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
+  /* Horizontal padding widens the hit area — "Privacy"/"Terms"/"Policies" are
+     short words that otherwise render in a <44px-wide box. */
+  padding: 0 var(--space-2);
 }
 
 .footer__link:hover {
@@ -1211,6 +1228,17 @@ a.card:active {
 
 .policy-content {
   padding: var(--space-12) 0;
+}
+
+/* Mobile: tighten vertical rhythm so the header doesn't eat most of a short
+   viewport before any content is visible. */
+@media (max-width: 639px) {
+  .policy-header {
+    padding: var(--space-10) 0;
+  }
+  .policy-content {
+    padding: var(--space-8) 0;
+  }
 }
 
 .policy-section {

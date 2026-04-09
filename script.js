@@ -408,6 +408,13 @@
     // Pause infinite animations (hero gradient, badge shine) when off-screen
     initOffscreenAnimationPause();
 
+    // Dynamic copyright year — keeps the footer accurate without a build step.
+    // The HTML contains a hardcoded fallback year for JS-disabled users.
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) {
+      copyrightYear.textContent = String(new Date().getFullYear());
+    }
+
     // Combined scroll handler for performance
     let scrollTimeout;
     window.addEventListener('scroll', () => {
