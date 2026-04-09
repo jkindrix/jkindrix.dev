@@ -33,15 +33,12 @@
   <link rel="canonical" href="https://jkindrix.dev/contact.html">
   <link rel="stylesheet" href="style.css">
 
-  <script>
-    (function() {
-      const stored = localStorage.getItem('jkindrix-theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = stored || (prefersDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
-  <noscript><style>.nav__menu{position:static!important;transform:none!important;opacity:1!important;visibility:visible!important}.nav__toggle{display:none!important}</style></noscript>
+  <!-- Theme initialization (prevents FOUC). Loaded sync from <head>, no defer. -->
+  <script src="theme-init.js"></script>
+  <noscript><link rel="stylesheet" href="noscript-fallback.css"></noscript>
+
+  <!-- Content Security Policy (via meta because GitHub Pages doesn't let us set response headers). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
 </head>
 <body>
   <!-- Skip to Content (Accessibility) -->
@@ -126,7 +123,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer__content">
-        <p class="footer__copyright">&copy; 2026 Justin Kindrix. All rights reserved.</p>
+        <p class="footer__copyright">&copy; <span id="copyright-year">2026</span> Justin Kindrix. All rights reserved.</p>
 
         <ul class="footer__nav">
           <li><a href="policies.html" class="footer__link">Policies</a></li>

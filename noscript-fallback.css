@@ -1,0 +1,34 @@
+/* ==========================================================================
+   Noscript Fallback Styles
+
+   Loaded via <noscript><link rel="stylesheet" href="noscript-fallback.css">
+   so it only applies when JavaScript is disabled.
+
+   Extracted from inline <noscript><style> blocks to keep the
+   Content-Security-Policy strict (style-src 'self', no 'unsafe-inline',
+   no hashes). The CSS engine applies this via a normal <link>, so
+   style-src 'self' permits it.
+
+   Purpose:
+     - Reveal scroll-animated content that would otherwise stay at
+       opacity: 0 forever without the IntersectionObserver.
+     - Make the mobile nav menu visible inline (since the toggle
+       button depends on JS to open it).
+   ========================================================================== */
+
+[data-animate],
+[data-animate="stagger"] [data-animate-child] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.nav__menu {
+  position: static !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.nav__toggle {
+  display: none !important;
+}
